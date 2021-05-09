@@ -1,0 +1,1886 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={An R Markdown document converted from ``C://Users//nzoro//OneDrive//Documents//Esilv//Actuariat//R\_Cours//apercu\_Projet\_R.ipynb''},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{An R Markdown document converted from
+``C://Users//nzoro//OneDrive//Documents//Esilv//Actuariat//R\_Cours//apercu\_Projet\_R.ipynb''}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{projet-langage-r}{%
+\section{\texorpdfstring{\textbf{Projet Langage
+R}}{Projet Langage R}}\label{projet-langage-r}}
+
+\hypertarget{description-des-variables}{%
+\subsection{Description des variables}\label{description-des-variables}}
+
+Descriptif des variables
+
+Fichier contrats
+
+\begin{itemize}
+\item
+  IDPOL: Identifiant du contrat d'assurance
+\item
+  DATEEFF: Date d'effet du contrat
+\item
+  IDCLI: Identifiant du client
+\item
+  IDPART: Identifiant du conjoint du client
+\item
+  IDCHI1: Identifiant de l'enfant numéro 1
+\item
+  IDCHI2: Identifiant de l'enfant numéro 2
+\item
+  IDCHI3: Identifiant de l'enfant numéro 3
+\item
+  IDCHI4: Identifiant de l'enfant numéro 4
+\item
+  IDCHI5: Identifiant de l'enfant numéro 5
+\item
+  IDCHI6: Identifiant de l'enfant numéro 6
+\item
+  FORMU: Formule du contrat
+\item
+  DATECAN: Date de résiliation
+\item
+  REACANC: Raison de résiliation
+\item
+  AMTPREM: Montant de prime
+\item
+  RANKAGG: Rang sur le comparateur
+\item
+  COMPAR: Comparateur
+\item
+  MARCLI: Statut marital du client
+\item
+  SEXCLI: Sexe du client
+\item
+  DTNCLI: Date de naissance du client
+\item
+  PROFCLI: Profession du client
+\item
+  CP: Code postal du client
+\item
+  SEXCJ: Sexe du conjoint
+\item
+  DTNCJ: Date de naissance du conjoint
+\item
+  PROFCJ: Profession du conjoint
+\end{itemize}
+
+Fichier prestations
+
+\begin{itemize}
+\item
+  IDPOL: Identifiant du contrat d'assurance
+\item
+  IDBENE: Identificant du bénéficiaire (ça peut être l'assuré, le
+  conjoint ou l'un des enfants)
+\end{itemize}
+
+Categories: catégorie de prestation
+
+\begin{itemize}
+\item
+  Subcat: sous-catégorie de prestation
+\item
+  Name: libellé de prestation
+\item
+  Amt: montant de dépense
+\end{itemize}
+
+Durant ce projet, nous allons étudier la Situation des comparateurs, et
+l'importance des comparateurs dans notre portefeuille d'assurance.Pour
+cela, nous allons analyser plusieurs caratéristiques.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra=}\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"http://dataks.bitbucket.io/assurance/contrats.csv"}\NormalTok{)}
+
+\NormalTok{prest=}\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"http://dataks.bitbucket.io/assurance/prestations_bene.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(contra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        IDPOL    DATEEFF      IDCLI     IDPART     IDCHI1     IDCHI2 IDCHI3
+## 1 2C7EAEF380 2011-02-10 7A61ADDB61       <NA>       <NA>       <NA>   <NA>
+## 2 F1125A72F9 2011-07-10 4E5D3AA63C 32D5615B20 2EF179B6C7 B09D69E316   <NA>
+## 3 0F5BF8EA40 2011-08-10 283B50C751       <NA>       <NA>       <NA>   <NA>
+## 4 73FB728155 2011-08-10 2DF3A65E55       <NA>       <NA>       <NA>   <NA>
+## 5 21BFCE62CB 2012-01-01 9C968CCD1F       <NA>       <NA>       <NA>   <NA>
+## 6 0EF51BD7B0 2011-12-10 51305185AA       <NA>       <NA>       <NA>   <NA>
+##   IDCHI4 IDCHI5 IDCHI6 FORMU    DATECAN                     REACAN AMTPREM
+## 1   <NA>   <NA>     NA  FOR1 2017-12-31 Non-payment of the premium  220.92
+## 2   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium  769.44
+## 3   <NA>   <NA>     NA  FOR2 2016-12-31 Non-payment of the premium  311.16
+## 4   <NA>   <NA>     NA  FOR3 2016-12-31 Non-payment of the premium  583.92
+## 5   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium   961.8
+## 6   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium  797.76
+##   RANKAGG       COMPAR  MARCLI SEXCLI     DTNCLI  PROFCLI    CP SEXCJ
+## 1       1 Comparateur1  Single      M 1980-12-16 Employee 29200  <NA>
+## 2       4 Comparateur1 Married      M 1968-12-22 Employee  1700     F
+## 3       1 Comparateur1  Single      M 1977-06-08 Employee 45260  <NA>
+## 4       2 Comparateur1  Single      M 1960-09-05 Employee 74130  <NA>
+## 5       2 Comparateur1  Single      F 1951-02-19  Retired 14600  <NA>
+## 6       6 Comparateur1  Single      F 1962-07-12 Employee 66600  <NA>
+##        DTNCJ   PROFCJ
+## 1       <NA>     <NA>
+## 2 1978-11-15 Employee
+## 3       <NA>     <NA>
+## 4       <NA>     <NA>
+## 5       <NA>     <NA>
+## 6       <NA>     <NA>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(prest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        IDPOL     IDBENE            Categories          Subcat
+## 1 228CD89F09 D29FCC705E Ensemble des Hopitaux HOSPITALISATION
+## 2 C87113477B BF4CA46421 Ensemble des Hopitaux HOSPITALISATION
+## 3 29D2B59AA7 18EC43BA24 Ensemble des Hopitaux HOSPITALISATION
+## 4 1EA49C7D41 5597A0EF6F Ensemble des Hopitaux HOSPITALISATION
+## 5 74F33CA4BE 2C14A84AD9 Ensemble des Hopitaux HOSPITALISATION
+## 6 11069421BF 5E17F9F8D6               OPTIQUE         MONTURE
+##                              Name     Amt
+## 1 FRAIS D'HEBERGEMENT ET DE SOINS  486.45
+## 2 FRAIS D'HEBERGEMENT ET DE SOINS 1558.00
+## 3 FRAIS D'HEBERGEMENT ET DE SOINS 1297.40
+## 4 FRAIS D'HEBERGEMENT ET DE SOINS  669.00
+## 5 FRAIS D'HEBERGEMENT ET DE SOINS 2670.00
+## 6                 MONTURE OPTIQUE   50.00
+\end{verbatim}
+
+\hypertarget{packages}{%
+\paragraph{- Packages}\label{packages}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("data.table")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'data.table' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("tibble")}
+\KeywordTok{library}\NormalTok{(tibble)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tibble' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyverse' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching packages ------------------------------------------------------------------------------ tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v tidyr   1.1.2     v dplyr   1.0.2
+## v readr   1.3.1     v stringr 1.4.0
+## v purrr   0.3.3     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'readr' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'purrr' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'stringr' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'forcats' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts --------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::between()   masks data.table::between()
+## x dplyr::filter()    masks stats::filter()
+## x dplyr::first()     masks data.table::first()
+## x dplyr::lag()       masks stats::lag()
+## x dplyr::last()      masks data.table::last()
+## x purrr::transpose() masks data.table::transpose()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("ggthemes") }
+
+\CommentTok{#install.packages("ggsci")}
+
+\KeywordTok{library}\NormalTok{(ggthemes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggthemes' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggsci"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggsci' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  utilisation de data.table
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra=}\KeywordTok{data.table}\NormalTok{(contra)}
+
+\NormalTok{prest=}\KeywordTok{data.table}\NormalTok{(prest)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{manipulation-des-donnuxe9es}{%
+\subsection{Manipulation des
+données}\label{manipulation-des-donnuxe9es}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(contra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'data.table' and 'data.frame':   6993 obs. of  24 variables:
+##  $ IDPOL  : Factor w/ 6990 levels "000B46F609","0010C764A2",..: 1201 6569 406 3130 893 398 4562 5966 6338 6457 ...
+##  $ DATEEFF: Factor w/ 778 levels "2011-01-12","2011-02-10",..: 2 10 13 13 20 19 18 4 16 7 ...
+##  $ IDCLI  : Factor w/ 6979 levels "00047E6ABB","001051A2D8",..: 3272 2054 1020 1180 4209 2134 3449 5864 6413 5236 ...
+##  $ IDPART : Factor w/ 1823 levels "0022344D31","00642A0F69",..: NA 352 NA NA NA NA 1748 1689 NA NA ...
+##  $ IDCHI1 : Factor w/ 1980 levels "005365B5B3","007E75CB81",..: NA 346 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI2 : Factor w/ 1101 levels "0021F9CEEB","007291596D",..: NA 779 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI3 : Factor w/ 189 levels "011BDAC4A2","01B8C58ADE",..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI4 : Factor w/ 31 levels "02F9E21EC2","0AB39C9B8A",..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI5 : Factor w/ 2 levels "22587BB280","D2D2B0253F": NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI6 : logi  NA NA NA NA NA NA ...
+##  $ FORMU  : Factor w/ 4 levels "FOR1","FOR2",..: 1 4 2 3 4 4 4 4 1 4 ...
+##  $ DATECAN: Factor w/ 685 levels "2011-12-13","2011-12-18",..: 685 542 542 542 542 542 542 390 390 390 ...
+##  $ REACAN : Factor w/ 3 levels "Cancel renewal policy",..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ AMTPREM: Factor w/ 4845 levels "1000.32","1000.44",..: 1455 4242 1977 3628 4738 4320 2990 1210 1401 1692 ...
+##  $ RANKAGG: int  1 4 1 2 2 6 NA NA 1 1 ...
+##  $ COMPAR : Factor w/ 7 levels "Comparateur1",..: 1 1 1 1 1 1 NA NA 1 1 ...
+##  $ MARCLI : Factor w/ 5 levels "Cohabitant / Pacs",..: 4 2 4 4 4 4 1 2 4 4 ...
+##  $ SEXCLI : Factor w/ 2 levels "F","M": 2 2 2 2 1 1 2 2 2 2 ...
+##  $ DTNCLI : Factor w/ 5539 levels "1937-07-30","1937-11-08",..: 2750 1125 2260 420 72 553 4578 178 3082 2163 ...
+##  $ PROFCLI: Factor w/ 13 levels "Company head",..: 3 3 3 3 8 3 13 12 3 12 ...
+##  $ CP     : int  29200 1700 45260 74130 14600 66600 39130 77000 44200 15500 ...
+##  $ SEXCJ  : Factor w/ 2 levels "F","M": NA 1 NA NA NA NA 1 1 NA NA ...
+##  $ DTNCJ  : Factor w/ 1697 levels "1940-01-16","1941-09-06",..: NA 1070 NA NA NA NA 1678 179 NA NA ...
+##  $ PROFCJ : Factor w/ 14 levels "Company head",..: NA 3 NA NA NA NA 13 13 NA NA ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  La variable comparateur
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("prettyR")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(prettyR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  description de la variable de la variable comparateur
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{describe}\NormalTok{(contra[,COMPAR]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Description of structure(list(x = structure(c(1L, 1L, 1L, 1L, 1L, 1L, NA, NA,  1L, 1L, NA, NA, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,  NA, NA, 1L, 1L, NA, 1L, 1L, 1L, 1L, 2L, 2L, 1L, 2L, 1L, 1L, 2L,  NA, 1L, 1L, 2L, 2L, 1L, 1L, 1L, NA, 1L, 1L, NA, NA, 1L, 2L, 2L,  1L, NA, NA, 2L, 2L, 2L, 1L, 2L, 2L, NA, 1L, NA, 1L, 1L, 2L, 1L,  1L, NA, 2L, 1L, 1L, 1L, 2L, 1L, NA, 2L, NA, 1L, 1L, 1L, 1L, 2L,  1L, NA, 1L, 1L, 2L, 1L, 2L, 1L, 2L, 2L, NA, 1L, 1L, 1L, 2L, 1L,  1L, 1L, 2L, NA, 2L, 1L, 1L, 1L, 2L, 1L, NA, 1L, NA, 2L, NA, 2L,  2L, 2L, 1L, 1L, 1L, 2L, 1L, NA, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,  1L, NA, 1L, NA, NA, 1L, 3L, 1L, 1L, NA, NA, 1L, NA, 1L, 1L, 2L,  NA, 1L, 3L, 1L, 1L, 1L, NA, 2L, 1L, 2L, 2L, 1L, 2L, 1L, 1L, NA,  1L, 1L, NA, 1L, NA, NA, 1L, 1L, NA, NA, 3L, 1L, 2L, 1L, 1L, NA,  1L, NA, NA, NA, NA, 1L, 1L, 4L, NA, 2L, NA, 2L, 2L, NA, 2L, 1L,  1L, NA, 1L, 2L, 4L, NA, NA, NA, NA, NA, 1L, NA, NA, 4L, 4L, 1L,  1L, NA, NA, 4L, 1L, 1L, 1L, NA, 1L, 4L, NA, 5L, 2L, 1L, NA, 5L,  2L, 3L, NA, 1L, 4L, 4L, 4L, 3L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,  1L, 2L, NA, 1L, 2L, NA, 2L, 1L, 1L, 2L, NA, NA, 2L, 1L, 1L, 2L,  2L, 2L, NA, 1L, 1L, NA, 1L, 1L, 1L, 1L, 1L, NA, NA, NA, NA, 4L,  NA, 6L, 4L, 1L, 1L, 2L, 4L, 1L, NA, 1L, NA, NA, NA, 6L, 4L, 3L,  NA, NA, 1L, 1L, 4L, NA, NA, 6L, NA, 4L, 4L, NA, 2L, NA, 3L, NA,  6L, 6L, 1L, 4L, 4L, 4L, NA, 1L, 3L, NA, 3L, NA, 2L, NA, 4L, 1L,  1L, 2L, 1L, 2L, 2L, NA, 2L, 2L, 2L, 2L, 2L, NA, 2L, NA, 2L, 1L,  6L, 1L, 4L, NA, 2L, NA, 1L, 1L, 2L, 2L, 2L, NA, NA, 2L, 6L, 6L,  4L, 6L, 1L, 2L, NA, NA, NA, 4L, 6L, 4L, 4L, 6L, 6L, NA, NA, 2L,  NA, 6L, 5L, 4L, 4L, 6L, 6L, NA, 4L, 2L, 4L, 4L, 2L, NA, 2L, 6L,  2L, 6L, 6L, 6L, 4L, NA, 6L, NA, 5L, NA, 4L, 2L, NA, 1L, NA, 1L,  2L, NA, NA, 1L, 6L, 4L, NA, 2L, NA, NA, NA, 4L, NA, NA, 6L, NA,  2L, NA, 5L, 6L, 1L, NA, 2L, 2L, 2L, NA, 6L, 1L, 4L, NA, 5L, 4L,  NA, 4L, NA, 4L, 6L, 6L, 4L, 2L, 6L, 6L, NA, 2L, 1L, 2L, 2L, 1L,  1L, 1L, NA, 2L, NA, 4L, 6L, 6L, 4L, 1L, 3L, 1L, 1L, 6L, 3L, NA,  5L, 4L, 6L, 3L, NA, NA, 6L, 4L, 3L, 6L, NA, 4L, 4L, 4L, NA, 2L,  1L, 1L, 1L, 6L, NA, NA, 1L, 1L, 2L, 4L, 4L, 4L, 4L, 6L, 1L, 4L,  3L, 3L, 2L, NA, 2L, 2L, 6L, 6L, 4L, NA, 2L, 5L, 6L, 6L, 3L, 4L,  NA, 4L, 1L, NA, 6L, 6L, 1L, 3L, 4L, 3L, 6L, 1L, NA, NA, 3L, 6L,  6L, 6L, NA, 4L, 2L, 4L, 2L, NA, NA, 1L, 1L, 3L, 5L, NA, NA, 3L,  3L, NA, 6L, 6L, 2L, 6L, 4L, 1L, 4L, 6L, 4L, 2L, 6L, 6L, 1L, 4L,  4L, 1L, 6L, 3L, 1L, 4L, 1L, 3L, 4L, 3L, 6L, NA, 6L, 2L, 2L, NA,  NA, 1L, 4L, 6L, 4L, 6L, 1L, 2L, 3L, 5L, 6L, 4L, NA, 4L, 3L, 6L,  6L, 6L, 3L, 1L, 5L, 6L, 1L, 1L, NA, 1L, NA, 1L, 6L, 1L, 1L, 1L,  4L, 3L, NA, 4L, 1L, 6L, 6L, 1L, NA, 2L, 6L, 1L, 6L, NA, 3L, 3L,  NA, 6L, 6L, 1L, 6L, 1L, 1L, NA, 2L, 1L, 1L, 1L, 1L, NA, 6L, NA,  2L, 2L, 6L, 2L, 6L, 3L, NA, 3L, 2L, 4L, 6L, 1L, 2L, 1L, 4L, 6L,  4L, 5L, NA, 2L, 1L, 6L, NA, NA, 4L, 6L, 6L, NA, 4L, NA, 1L, 4L,  NA, 6L, 1L, 1L, 4L, 1L, 1L, 2L, 1L, 2L, 6L, 3L, 5L, NA, 2L, 3L,  4L, 2L, 4L, NA, 6L, 6L, 6L, 2L, 1L, 1L, NA, NA, 2L, NA, 6L, 3L,  3L, 6L, 2L, NA, 6L, 2L, 6L, 2L, 6L, 4L, NA, 5L, 3L, 6L, NA, 6L,  6L, 1L, 1L, NA, 4L, NA, NA, 6L, 3L, 4L, 3L, 5L, NA, 2L, 1L, 1L,  NA, 4L, 5L, 2L, 5L, 4L, NA, 6L, 6L, 5L, 6L, 3L, 6L, NA, 6L, 6L,  6L, 6L, 1L, 4L, 6L, NA, NA, 1L, 3L, 3L, 3L, 2L, 3L, 6L, 4L, 3L,  2L, 3L, 4L, 6L, 2L, 2L, NA, 2L, 4L, NA, NA, 1L, 4L, 4L, 5L, 2L,  NA, 2L, 4L, 1L, 1L, 1L, NA, 1L, 1L, 2L, 1L, 1L, 1L, 1L, NA, NA,  NA, 4L, 2L, NA, 6L, NA, 2L, NA, 1L, 2L, NA, NA, 6L, NA, 4L, 4L,  NA, 4L, 4L, NA, 4L, 6L, 6L, NA, 6L, NA, 6L, 4L, 4L, 1L, 4L, NA,  6L, 1L, NA, 1L, 2L, 4L, 3L, 2L, 6L, NA, NA, NA, NA, 2L, 6L, 2L,  6L, 1L, NA, 6L, 6L, 6L, 4L, 6L, NA, 2L, NA, 1L, 2L, NA, 3L, 1L,  6L, NA, 6L, NA, NA, 5L, 4L, NA, 3L, 2L, 4L, NA, 6L, 4L, 2L, 5L,  5L, 3L, NA, 6L, NA, 6L, 6L, NA, 5L, NA, 1L, 6L, 6L, 3L, 6L, 2L,  6L, 3L, 3L, 6L, 2L, 4L, 5L, 1L, 2L, 4L, 1L, 2L, 2L, 1L, 6L, 6L,  NA, NA, NA, NA, 6L, NA, 2L, NA, 4L, 4L, 5L, 6L, 2L, 1L, 6L, NA,  1L, 2L, 4L, 2L, 4L, 2L, NA, 6L, 4L, 5L, NA, NA, 6L, 6L, 4L, 5L,  NA, 3L, 4L, 6L, 5L, NA, 2L, 1L, NA, 2L, 5L, 1L, 2L, 4L, 4L, 6L,  6L, 6L, 6L, NA, NA, NA, 5L, 6L, NA, 5L, 3L, 5L, 2L, 4L, NA, NA,  2L, 4L, 6L, 5L, 3L, 3L, 5L, 2L, 6L, 5L, 1L, 4L, 6L, 6L, 6L, 2L,  4L, 6L, 6L, 4L, 2L, 1L, 2L, 6L, 6L, 4L, NA, 3L, 3L, NA, 6L, 2L,  NA, 5L, 2L, 2L, 3L, 4L, 3L, 6L, 6L, 6L, 5L, 6L, 1L, 6L, NA, 4L,  3L, 3L, 6L, 4L, 6L, 6L, 6L, 6L, NA, 6L, 4L, 1L, 2L, 5L, 4L, 4L,  2L, 4L, 5L, 1L, 5L, NA, 1L, 1L, 6L, 6L, 4L, 6L, NA, 1L, 2L, 3L,  6L, 2L, 3L, 1L, NA, 2L, 4L, 3L, NA, 4L, 3L, 6L, 6L, 2L, 4L, NA,  NA, 4L, 4L, 6L, NA, 1L, 2L, 1L, 6L, 4L, NA, 6L, 6L, 6L, NA, 6L,  6L, 6L, 6L, 1L, 6L, 6L, NA, 4L, 3L, 3L, 3L, 3L, 6L, 1L, NA, 4L,  6L, 1L, 6L, 2L, 5L, 1L, NA, 3L, 2L, 2L, 1L, 1L, 6L, 4L, 6L, 6L,  4L, 3L, 4L, 6L, 6L, 6L, 4L, 2L, 1L, 4L, 4L, 1L, NA, 6L, 5L, NA,  6L, 2L, 6L, NA, 6L, NA, 6L, 6L, 6L, 6L, NA, 1L, 3L, 4L, 4L, 1L,  NA, 4L, 6L, 6L, NA, 4L, 4L, 4L, 4L, 6L, 1L, 6L, 6L, NA, 6L, 6L,  6L, 6L, 6L, NA, NA, 6L, NA, 4L, 2L, 4L, 5L, 6L, 6L, 6L, 4L, NA,  6L, NA, 4L, 3L, 4L, 6L, 4L, 6L, 6L, 2L, NA, NA, 2L, 4L, 6L, 3L,  NA, 3L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, NA, 6L, 6L, 2L, 3L, 6L,  6L, 1L, 6L, 4L, 2L, 4L, 4L, 4L, NA, 1L, 6L, NA, 2L, 6L, 6L, 6L,  6L, 6L, NA, 6L, 6L, 4L, NA, NA, 1L, 4L, 6L, 4L, NA, 6L, NA, 1L,  6L, 4L, 6L, 2L, 3L, 6L, 6L, NA, 6L, 1L, 6L, 1L, 6L, 3L, 1L, 6L,  3L, 6L, 5L, 2L, 6L, 6L, 6L, 1L, 3L, 6L, 3L, 2L, 3L, 1L, 6L, NA,  4L, 6L, NA, 1L, 6L, 4L, NA, 3L, 6L, 5L, 1L, NA, 1L, NA, 6L, 1L,  6L, NA, 4L, 3L, 6L, 6L, 4L, 5L, NA, 6L, 4L, 1L, NA, 6L, 6L, NA,  6L, 6L, 6L, 6L, 5L, NA, 6L, 6L, 2L, 6L, 6L, 6L, 4L, 6L, 6L, 6L,  NA, NA, 5L, 2L, 6L, 6L, 6L, 5L, NA, 1L, 1L, 6L, 6L, 2L, 3L, 5L,  5L, NA, NA, 4L, 6L, 4L, 6L, 2L, 4L, 5L, 5L, 4L, 6L, 6L, 2L, 5L,  6L, 6L, 6L, NA, NA, 2L, 6L, 4L, 1L, 5L, 6L, 4L, 5L, 5L, 6L, 6L,  5L, NA, 6L, NA, 5L, NA, NA, 4L, 4L, 1L, 6L, 2L, 1L, 1L, 6L, 3L,  5L, 5L, NA, 5L, 6L, NA, 5L, 5L, NA, 6L, NA, NA, NA, 5L, 6L, 3L,  NA, 5L, 6L, 4L, 3L, 2L, 5L, 4L, 6L, 6L, 6L, 3L, 6L, NA, 1L, 6L,  6L, 6L, 5L, 6L, 2L, NA, 2L, 4L, NA, NA, 5L, NA, 1L, 2L, 4L, 2L,  4L, NA, 6L, 4L, 1L, NA, 1L, 1L, 1L, NA, 1L, 1L, NA, 1L, 2L, 2L,  2L, 4L, NA, NA, 4L, 4L, NA, NA, 4L, NA, 6L, 4L, 3L, 2L, 4L, 6L,  6L, 2L, 5L, NA, NA, 5L, 6L, NA, 6L, 6L, NA, 6L, 6L, 6L, 6L, 2L,  6L, 3L, 3L, NA, 5L, 3L, 3L, 5L, 4L, 1L, 2L, 2L, 4L, 3L, 6L, NA,  6L, NA, NA, 3L, 6L, NA, 2L, 6L, 6L, 5L, NA, 5L, 1L, 6L, NA, NA,  NA, 5L, NA, 6L, NA, 3L, 6L, 1L, NA, NA, 3L, NA, 5L, 1L, 6L, 5L,  3L, 6L, NA, 5L, 2L, 5L, 6L, 5L, 1L, NA, 5L, 6L, 6L, 5L, 5L, 3L,  6L, 6L, 5L, 6L, 5L, 6L, 6L, 6L, 3L, 2L, NA, 4L, 4L, NA, NA, NA,  1L, 6L, 5L, NA, 5L, 2L, 5L, NA, NA, 6L, 3L, 2L, 6L, 5L, NA, NA,  5L, 6L, 6L, 5L, NA, 6L, 6L, 5L, 6L, NA, NA, 5L, 1L, 5L, 6L, 3L,  NA, 5L, 5L, 6L, 5L, 3L, NA, 6L, 6L, 5L, 5L, 5L, 5L, 4L, 2L, 3L,  2L, 3L, NA, 5L, NA, NA, 4L, 3L, NA, 5L, 5L, 5L, 6L, 5L, NA, 5L,  6L, 5L, 1L, 5L, 5L, 5L, 5L, 1L, 5L, 6L, 5L, NA, 5L, 3L, 5L, 5L,  6L, 6L, 5L, 6L, 6L, 5L, 5L, 5L, 1L, 5L, 1L, 1L, 2L, NA, NA, 4L,  6L, NA, 3L, 5L, 3L, 1L, 5L, 2L, 6L, 2L, 6L, 3L, 3L, 4L, 6L, 6L,  NA, 4L, 4L, 6L, 5L, 6L, 3L, 6L, 5L, 5L, 5L, 6L, 6L, 5L, 3L, NA,  6L, 5L, 6L, NA, 5L, 5L, 6L, 4L, 5L, 5L, NA, 5L, 6L, 5L, 5L, 5L,  3L, NA, 5L, 5L, 6L, 5L, 6L, 5L, 4L, 6L, NA, 5L, 5L, 5L, 5L, 6L,  5L, 3L, 5L, 5L, 6L, 6L, 6L, 5L, 5L, 5L, 6L, 5L, 6L, 6L, NA, 5L,  5L, 5L, 1L, NA, 1L, NA, 6L, 1L, 5L, 2L, NA, NA, 1L, 2L, 6L, 6L,  6L, NA, 6L, NA, 4L, 4L, 6L, 3L, NA, 6L, 6L, 5L, 1L, 4L, 6L, 6L,  3L, 6L, 6L, 5L, 5L, 5L, 5L, 6L, 6L, 5L, 6L, 5L, 5L, 6L, 5L, 6L,  NA, 6L, 1L, 5L, NA, 6L, 3L, 6L, 5L, 5L, 6L, 6L, 6L, 5L, 5L, 5L,  5L, 4L, NA, NA, 5L, 6L, 4L, 2L, 6L, 2L, 2L, 6L, 5L, 4L, 6L, 2L,  4L, 3L, 5L, 6L, 1L, NA, 3L, 6L, 6L, 6L, NA, 5L, 5L, 5L, 6L, NA,  3L, 5L, 5L, 6L, NA, 5L, 6L, 3L, 5L, 6L, 6L, NA, 1L, NA, NA, 6L,  NA, 6L, 1L, 2L, NA, 2L, 2L, 5L, 4L, 6L, NA, NA, 6L, 5L, 5L, 6L,  5L, 6L, 5L, 6L, 5L, 4L, NA, NA, 5L, NA, 6L, 3L, 4L, 6L, NA, 2L,  6L, 6L, 2L, 6L, 6L, 6L, NA, 4L, 4L, 5L, 6L, 5L, 5L, 5L, 6L, 6L,  5L, 6L, 6L, 5L, 6L, 6L, NA, 6L, 6L, 5L, 6L, 5L, 6L, NA, 6L, 6L,  1L, 5L, NA, 6L, 6L, NA, 5L, 4L, 6L, 6L, 6L, 4L, 6L, 6L, 2L, 4L,  6L, NA, 6L, 6L, 5L, 3L, 6L, NA, 6L, 6L, 4L, 6L, 5L, 6L, 6L, 6L,  1L, 2L, 4L, NA, 2L, 5L, 1L, 6L, 2L, 2L, NA, 6L, 6L, 4L, NA, 4L,  5L, 1L, 3L, NA, 6L, 6L, NA, 6L, 6L, 5L, 6L, 6L, 6L, 6L, 5L, 6L,  5L, 6L, 6L, 5L, 6L, 5L, 5L, 5L, 6L, 5L, 6L, 5L, 4L, 2L, 6L, 6L,  NA, 5L, 3L, 3L, 5L, 5L, 1L, 1L, 3L, 2L, 6L, 6L, NA, 2L, 4L, NA,  6L, 6L, 1L, 6L, 5L, 5L, NA, NA, 6L, 6L, 3L, 6L, 6L, 6L, NA, 5L,  6L, 5L, 6L, NA, 5L, 6L, 5L, 6L, 6L, 6L, 1L, NA, 1L, NA, 6L, 6L,  NA, 6L, NA, 1L, NA, 5L, 6L, 6L, 1L, 6L, 4L, NA, NA, 6L, 6L, 6L,  1L, 5L, 6L, 6L, 5L, 6L, 6L, 3L, NA, 6L, 5L, 6L, 6L, 6L, 6L, 6L,  6L, 6L, 1L, 6L, 5L, 6L, 5L, 6L, 1L, 6L, 6L, 6L, 6L, 6L, 5L, 6L,  NA, 4L, 6L, 5L, 5L, 3L, 2L, 1L, 6L, 5L, 2L, 2L, 2L, 4L, NA, 1L,  2L, NA, 6L, NA, NA, NA, 6L, 6L, 3L, 4L, 6L, 6L, 2L, 6L, 3L, 3L,  NA, 5L, 5L, 5L, NA, 4L, NA, 5L, 6L, NA, NA, NA, 5L, 5L, NA, NA,  5L, 6L, 2L, 5L, 5L, NA, NA, NA, NA, 6L, NA, 2L, 4L, 5L, 5L, NA,  6L, 2L, 5L, 5L, 5L, 6L, 5L, 5L, NA, 5L, NA, 5L, 5L, NA, 3L, 6L,  5L, 1L, 5L, 4L, 5L, 5L, 3L, 6L, 3L, 5L, 6L, 6L, 6L, NA, 5L, 5L,  5L, 5L, 1L, 6L, 6L, 5L, 6L, 5L, 6L, 5L, 5L, 5L, 6L, NA, 2L, NA,  6L, 5L, 6L, NA, NA, 4L, 6L, NA, 4L, 5L, 5L, 6L, 6L, 6L, 6L, 4L,  1L, 2L, 4L, NA, 2L, 5L, 6L, 6L, 5L, 3L, 5L, NA, NA, 5L, 6L, 6L,  5L, 2L, 5L, NA, 5L, 5L, 1L, NA, 5L, 5L, 5L, NA, 5L, 6L, 5L, 6L,  6L, 6L, 5L, 6L, 6L, 1L, 1L, 5L, 6L, 6L, 6L, 6L, 5L, 6L, 6L, 6L,  6L, 6L, 5L, 6L, 6L, 1L, 1L, 5L, 2L, 2L, 3L, 6L, 6L, 6L, 5L, 5L,  NA, NA, 6L, 6L, 6L, 5L, 6L, 6L, 5L, 6L, 5L, 5L, 6L, 6L, 6L, 6L,  6L, 5L, 5L, 6L, 6L, 6L, NA, 6L, 6L, 6L, 5L, 5L, NA, 2L, 6L, 4L,  6L, NA, 4L, 5L, 6L, 6L, 6L, 5L, 5L, 5L, 5L, 5L, 5L, 6L, 5L, 3L,  2L, NA, 5L, 5L, NA, 6L, 3L, NA, NA, NA, 6L, 5L, 6L, 5L, 5L, 6L,  5L, NA, 6L, 5L, 6L, 5L, 5L, 6L, 6L, 6L, 5L, 5L, 6L, 3L, 6L, 5L,  6L, 5L, 1L, 5L, 5L, 6L, 5L, 5L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 6L,  6L, 6L, 5L, 6L, NA, 6L, 6L, 6L, 6L, NA, 6L, 6L, 5L, 5L, 5L, 5L,  NA, 4L, NA, 5L, 5L, 6L, 6L, 6L, 6L, 6L, 5L, 5L, 5L, 6L, 6L, 6L,  4L, 4L, 6L, 6L, NA, 6L, NA, 6L, 1L, 1L, 5L, 5L, 5L, 5L, 6L, 6L,  5L, 5L, NA, 5L, 5L, 6L, NA, NA, 4L, 6L, NA, 5L, 5L, 6L, 6L, NA,  6L, NA, 5L, NA, 5L, 6L, NA, 5L, 6L, 2L, NA, 4L, 6L, 5L, 6L, 1L,  6L, 1L, 6L, 5L, 6L, 6L, NA, 6L, 5L, 6L, 6L, 6L, 5L, 5L, 1L, 5L,  6L, 5L, 6L, 5L, 5L, 5L, 6L, 5L, 4L, 4L, 4L, 6L, 5L, NA, NA, 3L,  6L, NA, 6L, 4L, 6L, 6L, 6L, 1L, 5L, 6L, 4L, 6L, 4L, 6L, NA, 6L,  5L, 6L, 4L, 5L, 6L, 5L, 4L, NA, 1L, 6L, 6L, 6L, 5L, 1L, 4L, 1L,  2L, 4L, 6L, 6L, 6L, 6L, 5L, NA, 6L, NA, 5L, 5L, 3L, 3L, 6L, 6L,  6L, 6L, NA, NA, NA, 6L, 4L, 6L, NA, NA, 5L, 5L, 6L, 5L, 5L, 5L,  6L, 6L, 6L, 5L, 4L, 2L, NA, 4L, NA, NA, 6L, 6L, 6L, NA, 6L, 6L,  5L, 6L, 6L, 3L, 5L, 3L, 5L, 6L, 5L, NA, NA, NA, 5L, 6L, 6L, NA,  5L, 5L, 6L, 5L, 6L, 6L, 6L, 5L, 5L, 5L, NA, NA, 2L, 5L, 6L, 5L,  5L, 6L, 6L, 6L, 6L, 6L, 3L, 6L, 6L, 4L, 6L, NA, 1L, 5L, 6L, 5L,  5L, NA, 6L, 5L, 5L, NA, 6L, 5L, NA, 5L, 5L, 6L, 3L, 5L, 5L, 6L,  6L, 6L, 6L, 4L, 6L, 2L, 6L, 4L, NA, 6L, 6L, 6L, 5L, 6L, 5L, 5L,  5L, 6L, 6L, NA, 6L, 5L, NA, 5L, 5L, NA, NA, 5L, 5L, 5L, NA, 6L,  6L, 6L, NA, 6L, 4L, NA, 6L, 6L, NA, 5L, NA, 6L, 5L, NA, 6L, 5L,  NA, 5L, 6L, 5L, 6L, 4L, 6L, 6L, 4L, 6L, 6L, 6L, 5L, 6L, 5L, 6L,  5L, 6L, 6L, 6L, NA, 5L, 5L, 5L, 5L, 6L, 6L, 4L, 6L, 2L, 2L, 4L,  5L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 4L, NA, 6L, NA, 5L, 2L, 6L, 6L,  6L, 6L, 5L, 5L, 1L, 6L, 4L, 1L, 4L, 5L, 6L, 5L, 5L, NA, NA, NA,  5L, 5L, NA, 5L, 5L, 1L, 6L, 4L, 6L, 4L, 6L, 5L, 6L, 5L, 4L, 6L,  5L, 5L, 5L, 1L, 6L, 6L, 6L, 6L, NA, 6L, 5L, 6L, 6L, 6L, NA, 5L,  6L, 1L, 6L, NA, 1L, 6L, 6L, NA, 4L, 6L, 6L, 6L, 1L, NA, 5L, NA,  NA, 6L, 6L, 6L, 5L, 6L, 5L, 5L, 6L, 4L, NA, 6L, 6L, 6L, 6L, 5L,  5L, 5L, 6L, 6L, 5L, NA, 5L, NA, 2L, NA, 6L, 2L, 1L, 1L, 2L, 2L,  NA, 4L, 1L, 4L, 6L, 5L, 6L, 1L, 1L, 4L, 5L, 6L, 6L, 1L, 5L, NA,  6L, 6L, 5L, 5L, NA, 6L, 5L, 6L, 4L, 6L, NA, NA, 6L, 1L, NA, 6L,  5L, 6L, NA, 6L, 6L, 6L, 1L, 3L, 2L, 6L, 5L, 4L, NA, 1L, 4L, 5L,  NA, 6L, 3L, 4L, NA, NA, 6L, 5L, 5L, 5L, 5L, NA, 4L, 5L, 5L, 6L,  6L, 5L, 6L, 5L, NA, NA, 5L, 4L, 4L, 5L, 5L, 5L, 5L, 5L, 6L, NA,  NA, 4L, 6L, 5L, 5L, 5L, NA, 5L, 5L, 5L, 1L, 3L, 6L, NA, 6L, 6L,  6L, 6L, 5L, 6L, 6L, 6L, 4L, 6L, 6L, 5L, 5L, NA, 4L, 5L, 5L, NA,  NA, 1L, NA, NA, NA, 6L, 2L, 2L, 5L, NA, 5L, 6L, 5L, 5L, 6L, NA,  6L, NA, 6L, NA, 6L, 6L, 5L, 5L, 5L, 5L, 5L, 1L, 2L, 6L, 2L, NA,  4L, 4L, 5L, 5L, 1L, NA, 6L, NA, NA, 6L, 6L, 6L, NA, 7L, 6L, NA,  6L, 5L, 5L, 5L, 7L, 5L, 6L, 6L, 6L, 6L, 5L, NA, 6L, 6L, 6L, 5L,  4L, 2L, 1L, 2L, 1L, 2L, 1L, 1L, 2L, 1L, 6L, NA, NA, 6L, 4L, 4L,  6L, NA, 4L, 6L, 6L, NA, 6L, NA, 4L, 6L, 5L, 4L, NA, 6L, 2L, 2L,  6L, 4L, 5L, NA, 6L, 6L, 6L, NA, NA, 6L, NA, 5L, NA, 6L, 6L, 5L,  5L, 5L, 5L, 3L, 5L, 6L, 5L, 1L, 6L, 6L, 6L, NA, 4L, NA, NA, 6L,  5L, 6L, 6L, 6L, 6L, 6L, 5L, 6L, 6L, NA, 5L, 6L, 6L, 5L, 6L, 6L,  6L, 6L, 6L, 5L, 6L, 5L, 6L, 6L, 5L, 5L, 6L, 4L, 2L, 5L, 5L, 2L,  NA, 6L, NA, 5L, NA, 6L, 6L, 6L, NA, 5L, 6L, 6L, 6L, 3L, 5L, 6L,  4L, 6L, 5L, 5L, 6L, 6L, 5L, 5L, 6L, 6L, 6L, 5L, 6L, 6L, 6L, 6L,  5L, 6L, 6L, 5L, 6L, 6L, 6L, NA, 5L, 4L, 6L, 5L, NA, 6L, 5L, 5L,  5L, 5L, 2L, 6L, 6L, 5L, 6L, 6L, 6L, 5L, 6L, 5L, 6L, 5L, 6L, 5L,  5L, 6L, 1L, 5L, 6L, 5L, 5L, 5L, 6L, 5L, 5L, 5L, 5L, 1L, 6L, 6L,  6L, 5L, NA, 4L, 5L, 6L, 5L, 6L, 4L, 6L, 5L, 5L, 5L, 5L, 5L, 5L,  5L, 5L, 6L, 6L, 5L, NA, 3L, 2L, 1L, 2L, 1L, 2L, 6L, 2L, 5L, 5L,  NA, 5L, 5L, 5L, 5L, NA, NA, NA, 6L, 6L, 5L, 5L, 6L, NA, 6L, 6L,  1L, NA, 1L, 6L, NA, NA, 5L, 5L, 6L, 5L, 6L, 5L, 6L, 6L, 6L, 4L,  2L, 6L, 3L, NA, 6L, 6L, 6L, 6L, 5L, 2L, 6L, 4L, 6L, 5L, 5L, 5L,  6L, 1L, 5L, 6L, 5L, 6L, 5L, 6L, NA, 6L, 5L, 5L, 6L, NA, 6L, 5L,  NA, 2L, 5L, 6L, NA, NA, 5L, 6L, 6L, 5L, 1L, 5L, 5L, 1L, 6L, 5L,  6L, 5L, 5L, NA, NA, 6L, 5L, 5L, 5L, 6L, 6L, 6L, NA, 5L, 5L, 5L,  6L, 5L, 6L, 6L, 6L, NA, 5L, 6L, 4L, 6L, 6L, 6L, 6L, NA, 6L, 6L,  5L, 6L, 5L, 5L, 5L, 6L, 5L, 6L, NA, 5L, 6L, 6L, 6L, 5L, 6L, NA,  6L, 6L, 5L, 6L, 5L, NA, 6L, 6L, NA, 6L, NA, 6L, 6L, 5L, 5L, 6L,  6L, 6L, 6L, NA, 5L, 6L, NA, 5L, 6L, 6L, NA, 6L, 6L, NA, 7L, 6L,  6L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, NA, 2L, 1L, 1L, 1L, 1L, 4L,  NA, 6L, 1L, 4L, 6L, 4L, 2L, 4L, 6L, NA, 4L, 5L, 6L, 5L, NA, 6L,  1L, NA, 6L, 6L, 5L, NA, 6L, 6L, 6L, 5L, 1L, 6L, 5L, 6L, 3L, 5L,  6L, 5L, 5L, 6L, 5L, 6L, NA, 5L, 5L, 5L, 5L, 5L, 6L, 6L, 5L, 5L,  NA, 6L, 6L, NA, 5L, 5L, 5L, 6L, NA, NA, 5L, 5L, 6L, 5L, 6L, 1L,  NA, 1L, 6L, 3L, 4L, 5L, 1L, 5L, 4L, 6L, NA, 5L, 5L, 5L, 5L, 6L,  NA, 5L, 4L, 6L, 5L, 5L, 5L, 5L, 6L, 2L, 1L, 3L, 3L, 6L, 5L, 6L,  6L, 5L, 5L, 4L, 6L, 6L, 4L, 5L, 5L, 5L, 5L, 5L, NA, 5L, 5L, 5L,  6L, 6L, 6L, 6L, 4L, 5L, 5L, 5L, 6L, 5L, NA, 5L, 5L, 4L, 5L, 6L,  6L, NA, 6L, 5L, 5L, 6L, 6L, 5L, 5L, 5L, 1L, 2L, 2L, 6L, 5L, NA,  5L, 6L, 5L, 5L, 5L, 6L, 5L, NA, 6L, 5L, 5L, 5L, 5L, 5L, 5L, NA,  6L, 6L, 5L, 6L, NA, 6L, 2L, 6L, NA, 6L, 2L, 6L, 6L, NA, 5L, 5L,  6L, 6L, 6L, 6L, 5L, 2L, 2L, 3L, NA, 6L, NA, 5L, 5L, 6L, 5L, 6L,  6L, NA, 3L, 3L, 5L, 5L, 5L, 5L, 5L, 6L, 5L, 6L, 6L, NA, NA, 5L,  5L, 5L, 5L, 6L, 5L, 6L, 5L, 4L, 5L, 5L, 6L, 5L, 6L, 5L, 6L, 6L,  6L, 1L, 5L, 6L, 5L, NA, 6L, 5L, 5L, 6L, 4L, 4L, 4L, 3L, 4L, 6L,  1L, 5L, 4L, 5L, 6L, 6L, 6L, NA, 6L, 5L, 6L, 6L, 6L, 5L, NA, 6L,  4L, 6L, NA, NA, 6L, 6L, 6L, 6L, 5L, 6L, 6L, 6L, 5L, 5L, 6L, 5L,  5L, NA, NA, 1L, 6L, 6L, 6L, NA, 6L, 5L, 5L, NA, 2L, 5L, 6L, 6L,  5L, 5L, NA, 5L, 6L, 6L, 6L, 4L, 5L, NA, 6L, 5L, 6L, 5L, 6L, 6L,  5L, 5L, 6L, 6L, 6L, 6L, 5L, 7L, 1L, 6L, 5L, 6L, 6L, NA, 6L, 5L,  5L, 6L, 4L, 5L, 6L, 5L, 6L, 5L, 4L, 5L, 6L, 5L, 5L, 6L, 6L, 6L,  5L, 6L, NA, 5L, 6L, 6L, 5L, 6L, NA, 6L, NA, NA, 5L, 4L, 6L, 5L,  6L, 6L, 5L, 1L, 7L, 5L, 4L, 6L, 5L, NA, NA, 5L, 6L, 5L, 7L, 6L,  NA, 5L, 6L, 1L, NA, 3L, 1L, 6L, NA, 1L, 4L, 2L, 6L, NA, 5L, 4L,  6L, 6L, 4L, 6L, 3L, 4L, 6L, 5L, 6L, NA, 5L, 6L, 5L, 5L, 6L, 6L,  6L, 5L, NA, 4L, NA, 2L, 2L, 5L, 5L, 6L, 4L, 4L, 6L, 6L, 5L, 5L,  NA, 6L, 1L, 6L, NA, 5L, 6L, NA, 6L, NA, 6L, 5L, 5L, 6L, 5L, 6L,  NA, 6L, 6L, NA, 1L, 4L, 5L, 5L, 6L, 6L, 2L, 6L, 6L, 6L, 5L, 6L,  2L, 6L, 1L, 6L, 1L, 6L, NA, 5L, 6L, 6L, 1L, 1L, 4L, 6L, 6L, 4L,  6L, 5L, 6L, 6L, 5L, NA, NA, 5L, 6L, 6L, 5L, 6L, 4L, 5L, 6L, 5L,  NA, 5L, NA, 6L, 5L, 1L, 5L, 6L, 6L, 5L, 5L, 5L, 5L, NA, NA, NA,  NA, 6L, 5L, 5L, 4L, NA, 5L, 6L, 5L, 6L, 5L, 5L, NA, 6L, NA, 6L,  7L, 7L, 6L, 5L, 4L, 6L, NA, 5L, NA, 6L, 6L, 6L, 5L, 5L, 6L, 6L,  6L, 5L, 5L, 6L, 1L, 1L, NA, 6L, 6L, 6L, 5L, 5L, NA, 6L, 5L, 5L,  6L, 5L, 6L, NA, 5L, 5L, 4L, 3L, 5L, 6L, 4L, 6L, 6L, NA, 6L, 6L,  5L, 6L, 6L, NA, 6L, 6L, NA, 6L, 6L, 6L, 6L, NA, 5L, 6L, NA, 5L,  6L, 5L, 6L, 5L, NA, 6L, 6L, 6L, 6L, 5L, 5L, 6L, 6L, 6L, 5L, 6L,  6L, 7L, 5L, 6L, 6L, 1L, 6L, NA, 5L, NA, 6L, 6L, NA, 6L, 4L, NA,  5L, 6L, 5L, 6L, 5L, 6L, NA, 6L, 5L, 6L, 6L, 6L, 6L, 5L, 6L, 6L,  5L, 5L, 4L, NA, NA, 5L, 6L, 5L, NA, 5L, 5L, 6L, NA, 5L, 6L, 5L,  5L, 5L, 5L, 6L, 6L, 5L, 4L, 5L, 7L, 4L, 5L, 6L, 6L, 6L, 5L, 6L,  4L, 6L, 4L, 6L, 6L, 4L, NA, 4L, 6L, 6L, 2L, 4L, 6L, 6L, 2L, 5L,  5L, 5L, 4L, 6L, 6L, 4L, 5L, 6L, NA, 6L, 5L, 5L, 5L, 5L, 5L, 5L,  6L, 6L, 5L, 4L, 5L, 6L, 6L, 1L, 6L, 5L, 6L, 4L, 5L, NA, 1L, NA,  NA, 5L, 6L, 5L, 6L, 1L, 6L, 6L, 5L, 6L, 5L, 5L, 6L, NA, NA, 4L,  NA, 5L, 5L, 5L, 4L, 5L, 6L, 2L, NA, 3L, 5L, 3L, 6L, 5L, 5L, 5L,  6L, 5L, 6L, NA, NA, 6L, 5L, 6L, 6L, 5L, 6L, 4L, 4L, 6L, 6L, 6L,  6L, 5L, 5L, 5L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 1L, 6L, 6L, 5L, 6L,  6L, 6L, 6L, 6L, 6L, 6L, 2L, 6L, 5L, 6L, 5L, 6L, 6L, 6L, 6L, 5L,  6L, NA, 6L, 6L, 6L, 4L, 6L, 6L, 6L, 6L, 6L, 5L, 5L, NA, 6L, NA,  6L, 6L, 5L, 5L, 5L, 6L, 5L, 6L, 6L, NA, 4L, 5L, NA, 5L, 6L, 6L,  5L, 5L, 4L, 4L, 5L, 6L, 5L, 5L, NA, 5L, 6L, 6L, 6L, 5L, 1L, 5L,  5L, 6L, 6L, 6L, 2L, 5L, 6L, 6L, 5L, 5L, 5L, 6L, 6L, 6L, 6L, 6L,  6L, 6L, 6L, 6L, 6L, 4L, 6L, 6L, 7L, 6L, 5L, 6L, 6L, 6L, 6L, 6L,  6L, 5L, 5L, 6L, 5L, 6L, 5L, 5L, 6L, 6L, 5L, 6L, 6L, 6L, 5L, 6L,  6L, 5L, 6L, 6L, NA, 6L, 5L, NA, 6L, 5L, 6L, 6L, 6L, 6L, 6L, 4L,  6L, NA, 6L, 5L, 6L, 6L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 5L, NA, 5L,  NA, 7L, 6L, 5L, 6L, 6L, 5L, 6L, 7L, 6L, 6L, 6L, 6L, 5L, 6L, 5L,  5L, 5L, 4L, 5L, 5L, 2L, 5L, 6L, 6L, 6L, 6L, 5L, 5L, 4L, 5L, NA,  6L, 6L, 5L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, NA, 6L, 1L, NA, 6L, 1L,  NA, 6L, 6L, 3L, NA, 6L, 4L, 3L, 6L, NA, NA, NA, 4L, 6L, 5L, 5L,  6L, 2L, 4L, NA, NA, 5L, 6L, 5L, 5L, 6L, 6L, 6L, NA, 6L, NA, 4L,  5L, NA, 5L, 5L, 4L, 5L, 6L, 5L, NA, 6L, 1L, 6L, 6L, 6L, 5L, 5L,  6L, 4L, 6L, 6L, 6L, 1L, 5L, 5L, 6L, 5L, 5L, 6L, 5L, NA, NA, NA,  6L, 4L, 6L, NA, 5L, 4L, 6L, 6L, 6L, 4L, 5L, NA, 5L, 5L, 5L, 6L,  5L, 6L, 4L, 6L, 6L, 6L, 5L, 6L, 5L, 6L, 4L, 6L, NA, 5L, 5L, 6L,  6L, 4L, 5L, NA, 5L, 6L, 5L, 5L, 7L, 5L, 5L, 5L, 5L, 6L, 5L, 5L,  5L, 5L, 6L, NA, 6L, 5L, 4L, 5L, 6L, 6L, 6L, 6L, 5L, 5L, 6L, 6L,  NA, 6L, 6L, 6L, 5L, 5L, 5L, NA, 5L, NA, 6L, 5L, 5L, NA, 6L, 6L,  6L, 6L, NA, 6L, 6L, 5L, 5L, NA, NA, 6L, 4L, 5L, 4L, 4L, 5L, 6L,  5L, 6L, 7L, 5L, 6L, 6L, 4L, 4L, 4L, NA, NA, 6L, 6L, 6L, 6L, 5L,  5L, 6L, 6L, NA, NA, 5L, 6L, 5L, 5L, 6L, 6L, 5L, NA, 6L, 6L, NA,  5L, 6L, 7L, 1L, 4L, 5L, NA, 5L, 6L, NA, 6L, 5L, 5L, 5L, 6L, 6L,  6L, 4L, 5L, 6L, 5L, NA, NA, 6L, 4L, 6L, 6L, 5L, 6L, 4L, 6L, 5L,  5L, 5L, 6L, 6L, 5L, 6L, 4L, 6L, 6L, 6L, 4L, 6L, 5L, 4L, 5L, 5L,  6L, 6L, 6L, NA, 4L, 5L, 5L, 6L, NA, 5L, 5L, 4L, 5L, 6L, 5L, 5L,  6L, 6L, 6L, 6L, 5L, 1L, 2L, NA, 3L, 4L, 4L, 4L, NA, 4L, 6L, NA,  NA, 6L, 2L, 5L, 6L, 5L, 5L, 6L, NA, 6L, 6L, NA, 4L, 6L, 4L, NA,  4L, NA, 1L, 5L, NA, 5L, 6L, 6L, 6L, 6L, 4L, NA, 6L, 5L, 5L, 2L,  5L, 5L, 1L, 6L, NA, 5L, 5L, 6L, 6L, NA, 6L, NA, 4L, 2L, 5L, 6L,  NA, 1L, 5L, 6L, NA, NA, 6L, 6L, 5L, 4L, NA, 2L, 4L, 6L, 6L, 5L,  5L, 6L, 5L, 6L, 5L, 6L, 6L, 6L, 4L, 5L, 5L, 5L, 5L, 6L, 4L, 4L,  NA, 6L, 5L, 6L, 5L, 6L, 4L, 5L, 6L, 6L, 6L, 5L, 5L, 1L, 5L, 6L,  1L, 6L, 3L, 5L, 5L, 6L, 4L, 4L, 6L, 6L, 5L, NA, 6L, 5L, NA, 6L,  6L, 1L, 6L, 2L, 2L, 6L, 6L, 6L, 6L, 6L, 7L, 6L, 5L, NA, 4L, 5L,  5L, 3L, NA, NA, 6L, 5L, 6L, 6L, 5L, 5L, 5L, 6L, 6L, 4L, 5L, 5L,  6L, 6L, 6L, 5L, 5L, 7L, 5L, 6L, 5L, 5L, 5L, 5L, 6L, 4L, 6L, NA,  6L, 5L, NA, 6L, 6L, 6L, 5L, NA, 6L, 6L, 6L, 5L, 6L, 5L, 6L, 6L,  6L, 6L, 6L, NA, 6L, 5L, NA, 5L, 6L, NA, 6L, 5L, 5L, NA, 6L, 5L,  5L, 6L, 5L, 6L, 6L, 5L, 6L, 5L, NA, 5L, 6L, 4L, 5L, 5L, 5L, 6L,  6L, 6L, NA, 6L, 6L, 5L, 5L, 5L, NA, 6L, 4L, NA, 5L, NA, 4L, NA,  5L, NA, NA, 6L, NA, 6L, 6L, 6L, 5L, 5L, NA, 5L, 6L, 5L, 6L, 6L,  5L, 6L, 6L, 6L, 5L, 5L, 5L, 5L, 6L, 4L, 6L, NA, 5L, 4L, 5L, 5L,  5L, NA, 1L, 3L, 6L, 6L, NA, 4L, 6L, 5L, 5L, 4L, 6L, 6L, 6L, 6L,  5L, 6L, 5L, 5L, 5L, 5L, 5L, 4L, 6L, 5L, 5L, 5L, 5L, 4L, 4L, 5L,  3L, 4L, 6L, 4L, 6L, 5L, NA, 5L, 5L, 6L, 5L, NA, 6L, 6L, 6L, 5L,  6L, 5L, 6L, 5L, 4L, 6L, NA, 5L, 6L, 4L, 6L, 6L, 6L, 6L, 5L, 4L,  NA, NA, NA, 6L, 6L, 5L, NA, 6L, 6L, 5L, 4L, 5L, NA, 5L, 6L, 5L,  NA, 7L, 5L, 6L, 6L, 4L, 5L, 6L, 6L, 4L, 5L, NA, 5L, 6L, 6L, 6L,  5L, 6L, 6L, NA, 6L, 6L, 5L, 5L, 6L, 5L, 6L, 6L, 5L, 6L, 6L, 6L,  6L, 5L, NA, 6L, NA, 6L, 5L, 5L, 6L, 6L, 4L, 5L, 6L, 4L, 4L, 4L,  7L, 5L, 6L, 5L, 5L, 6L, 5L, 4L, 5L, 6L, 6L, 6L, 4L, 7L, 6L, 6L,  6L, 6L, 4L, 4L, 6L, 4L, 6L, 6L, 6L, NA, 5L, 5L, 5L, 6L, 6L, 5L,  6L, NA, 6L, 5L, NA, 6L, 6L, NA, 6L, 5L, 6L, 6L, 6L, 6L, 1L, NA,  NA, 1L, 6L, NA, 6L, 6L, 6L, 5L, 5L, 6L, 6L, 6L, 6L, 4L, 6L, 5L,  5L, NA, NA, 6L, NA, 6L, 6L, NA, 5L, 5L, 5L, 5L, 5L, 4L, 5L, NA,  5L, 6L, NA, 4L, NA, 5L, 5L, 6L, 5L, NA, 3L, 6L, 6L, 6L, 6L, 6L,  6L, 4L, NA, 5L, 5L, 4L, 4L, NA, NA, 6L, 5L, 6L, NA, NA, 6L, 6L,  1L, 6L, NA, 5L, 5L, 5L, 6L, 5L, NA, 1L, 6L, 2L, 6L, 6L, 5L, 6L,  3L, 5L, 6L, 6L, 5L, NA, 6L, 5L, 6L, NA, 1L, 5L, NA, 6L, 5L, NA,  5L, 5L, NA, 6L, 6L, 7L, 5L, 6L, 5L, 6L, 5L, 4L, 5L, NA, 6L, 2L,  6L, 5L, 5L, 5L, 5L, 6L, 5L, 5L, NA, 6L, 6L, 6L, 6L, 5L, 6L, 6L,  5L, 5L, 5L, 6L, 6L, 5L, 5L, 7L, 6L, NA, 5L, 6L, NA, 6L, 6L, 1L,  6L, 5L, 6L, NA, 6L, 5L, NA, 6L, 5L, 5L, 6L, 4L, 6L, 6L, 6L, 5L,  2L, 2L, 6L, 6L, NA, 6L, 6L, NA, 6L, 4L, 5L, 4L, 6L, 6L, 5L, 6L,  6L, 6L, 4L, 6L, 5L, 5L, 6L, 4L, 6L, 5L, 6L, 5L, 6L, 4L, 5L, 5L,  5L, 4L, 6L, 5L, 5L, 5L, 5L, NA, 4L, NA, 6L, 4L, 6L, 5L, 6L, 7L,  5L, 6L, 5L, 5L, 4L, 6L, 5L, 4L, 5L, 6L, 5L, 5L, 4L, NA, 6L, 5L,  4L, 4L, 6L, 6L, 6L, 5L, 5L, 6L, 6L, 6L, 4L, 6L, 4L, NA, 5L, 6L,  6L, 5L, 4L, 5L, 6L, 6L, 4L, 4L, 6L, 6L, 5L, 5L, 6L, 6L, 5L, 3L,  NA, 6L, NA, 6L, NA, 4L, 2L, 6L, 5L, NA, 6L, 6L, NA, 4L, 6L, 6L,  6L, NA, 6L, 6L, 5L, NA, 6L, 6L, 5L, 6L, 4L, NA, NA, NA, 5L, 4L,  5L, 6L, 6L, 5L, 6L, 6L, 6L, 5L, 6L, 6L, 6L, NA, NA, 6L, 6L, 6L,  6L, 6L, 6L, 6L, NA, 5L, 6L, 6L, 5L, 5L, 6L, 6L, 6L, 5L, 6L, 5L,  6L, 6L, 6L, 1L, 1L, 6L, 5L, 5L, 6L, NA, NA, NA, NA, NA, 5L, 6L,  5L, 6L, 5L, NA, 5L, 6L, 4L, NA, 2L, 5L, NA, 5L, 5L, 5L, 5L, 5L,  5L, 4L, 6L, 2L, 6L, NA, 5L, 5L, NA, 5L, 5L, 6L, 6L, NA, 6L, 5L,  4L, 6L, 5L, 4L, 5L, 5L, 5L, 5L, 6L, 1L, 6L, 5L, 4L, 6L, 5L, 4L,  6L, 5L, 4L, 5L, 6L, 6L, 6L, 5L, 2L, 4L, 4L, NA, 5L, 6L, 5L, 6L,  6L, 6L, NA, NA, 6L, 4L, 7L, 5L, 5L, NA, NA, NA, NA, 6L, 6L, 5L,  NA, NA, 4L, NA, 4L, 5L, 4L, 4L, 2L, 5L, 6L, 5L, 6L, 5L, 5L, 5L,  5L, 4L, 6L, 4L, 5L, NA, 5L, NA, 5L, 3L, 6L, 6L, 6L, 5L, 6L, 6L,  6L, 6L, 4L, 6L, 5L, 5L, 5L, 4L, 5L, 5L, NA, 4L, 1L, 6L, 3L, 3L,  2L, 5L, 5L, 5L, 6L, NA, 7L, 5L, NA, 5L, 6L, NA, 5L, NA, 5L, 4L,  NA, 4L, 4L, 4L, 4L, 5L, 6L, NA, NA, 5L, 5L, 6L, 5L, 6L, 5L, 5L,  5L, 6L, 5L, 4L, 5L, NA, NA, 5L, 6L, 5L, NA, 6L, 5L, NA, 5L, 4L,  5L, 5L, 5L, NA, 6L, 5L, 5L, 5L, 5L, 4L, 4L, 4L, 6L, 6L, 6L, 6L,  6L, NA, 6L, 5L, 5L, 6L, 5L, 5L, 6L, 5L, 5L, 6L, 5L, NA, 5L, 5L,  5L, 5L, 5L, 5L, 4L, 5L, 5L, NA, 5L, 5L, 5L, 6L, 4L, 4L, 5L, NA,  6L, NA, 5L, 5L, NA, 5L, 2L, 4L, 1L, 3L, NA, 4L, 4L, 3L, 4L, NA,  NA, NA, 6L, 6L, 6L, 5L, NA, 1L, 5L, NA, 6L, NA, 6L, NA, 5L, 6L,  4L, 6L, 4L, 6L, 6L, 1L, 6L, 5L, 6L, 6L, 6L, 6L, 6L, NA, 6L, NA,  6L, 5L, 2L, 5L, 5L, 5L, 5L, 6L, 6L, 6L, NA, 6L, 6L, 6L, 4L, 5L,  5L, 5L, 4L, 5L, 5L, 5L, 5L, 5L, 5L, NA, 5L, 5L, 6L, 6L, 6L, 6L,  5L, 6L, 6L, 5L, 6L, NA, 4L, 4L, 5L, NA, NA, 4L, 4L, 6L, 1L, 5L,  NA, 6L, 6L, 6L, 6L, NA, 6L, 4L, 6L, 6L, 6L, 6L, 6L, 5L, 6L, 6L,  6L, 6L, 5L, 6L, 6L, 6L, 5L, 5L, NA, 6L, 5L, 5L, 5L, NA, NA, 2L,  2L, NA, NA, 6L, 5L, 5L, 5L, 5L, 5L, 6L, 4L, 6L, NA, 4L, 5L, 4L,  NA, 6L, 5L, 6L, 6L, 4L, 6L, 5L, 5L, 5L, 6L, 6L, 4L, 6L, 5L, 5L,  6L, 3L, 6L, 6L, 5L, 5L, 6L, NA, 5L, 5L, 4L, 6L, 5L, 6L, NA, 2L,  NA, 4L, 5L, 6L, 6L, 5L, 5L, 5L, 6L, 6L, 6L, 5L, 6L, NA, 1L, 4L,  4L, 1L, 6L, NA, 6L, 6L, 6L, 5L, 6L, 6L, 5L, 6L, 6L, 6L, 5L, 5L,  6L, 5L, 3L, 5L, NA, 6L, 6L, 5L, 6L, 5L, 6L, NA, 6L, 6L, 6L, 6L,  5L, 5L, 6L, NA, 6L, 6L, 5L, 6L, 5L, 6L, 5L, 6L, 5L, 6L, 5L, NA,  4L, 6L, 6L, NA, 5L, 4L, 5L, 5L, 6L, 5L, 5L, 5L, 5L, 5L, 6L, NA,  6L, 6L, 6L, 5L, 5L, 4L, 6L, NA, 5L, 5L, 5L, 5L, 4L, 6L, 4L, 5L,  5L, 5L, 5L, 5L, NA, 5L, 6L, 5L, 6L, 4L, 6L, 6L, NA, 5L, 6L, 6L,  6L, 5L, NA, 5L, 5L, 5L, NA, NA, 5L, NA, 5L, NA, 5L, 5L, 4L, 5L,  6L, NA, 5L, 4L, 5L, 6L, 6L, 4L, 6L, 6L, 7L, 5L, 5L, 5L, 5L, 4L,  5L, NA, 6L, 5L, 6L, 6L, 5L, 6L, 6L, NA, 5L, 5L, NA, 5L, 5L, 5L,  4L, 5L, 4L, 6L, 4L, 5L, 5L, 5L, NA, 4L, 5L, 6L, NA, 5L, 6L, NA,  5L, 6L, 5L, 5L, 5L, 6L, 5L, 4L, 6L, 6L, NA, 2L, 4L, 4L, NA, NA,  NA, 6L, 6L, 6L, 6L, 5L, 3L, 5L, 6L, 5L, 6L, 6L, 6L, NA, 1L, NA,  6L, 5L, 6L, 6L, 6L, 6L, 6L, NA, 4L, 5L, NA, 6L, 5L, 5L, 4L, 5L,  5L, 5L, 6L, 5L, 6L, 5L, 5L, 5L, 5L, 5L, 5L, 4L, 4L, 6L, 6L, 5L,  5L, 6L, 6L, 5L, 6L, 5L, 5L, 7L, 5L, 5L, 5L, 5L, 5L, 6L, 6L, 1L,  6L, 3L, 6L, 6L, 5L, 5L, 5L, 5L, NA, 6L, 5L, 6L, 2L, NA, NA, 6L,  6L, 6L, 5L, NA, NA, 6L, 6L, 4L, NA, 2L, 3L, NA, 6L, 5L, 6L, 4L,  5L, 5L, 6L, 5L, 6L, NA, 5L, NA, 5L, 5L, 5L, 5L, 5L, 6L, 5L, 6L,  5L, 5L, 4L, 6L, 7L, 2L, 4L, 6L, 6L, 6L, 6L, 6L, 6L, 3L, 5L, 6L,  5L, 4L, 6L, 6L, NA, NA, 6L, 5L, 5L, NA, 5L, 6L, 6L, NA, 5L, 5L,  4L, 7L, 5L, 5L, 5L, 1L, 6L, 5L, NA, 6L, 6L, 6L, 6L, 6L, 6L, 4L,  5L, 4L, 6L, 4L, 6L, 5L, 5L, 7L, 6L, 4L, 6L, 5L, 5L, 6L, 5L, NA,  NA, 3L, 5L, 6L, 6L, 5L, 6L, 5L, 5L, 5L, 5L, 6L, 5L, 5L, 6L, NA,  6L, 6L, 5L, 6L, 6L, 6L, NA, 4L, 7L, 6L, 6L, 6L, NA, 6L, 6L, 4L,  1L, 6L, NA, 5L, 6L, 6L, 6L, 6L, 6L, 6L, NA, 4L, 4L, 5L, 4L, 6L,  4L, 5L, NA, 6L, 5L, 6L, NA, NA, 6L, 6L, 5L, NA, 5L, 4L, 6L, 5L,  6L, 4L, 6L, 4L, 6L, 5L, NA, 4L, 5L, 5L, 4L, 5L, 6L, 5L, NA, 6L,  3L, 5L, 7L, 5L, 6L, 6L, 6L, 6L, 5L, 5L, 6L, NA, 6L, 6L, 4L, 6L,  5L, 5L, 4L, 6L, 6L, 6L, 4L, 6L, 4L, 6L, 5L, 6L, 5L, 5L, 5L, 6L,  6L, 6L, NA, 5L, 6L, 6L, 6L, 5L, 5L, 6L, 7L, 6L, 6L, 6L, 5L, 6L,  5L, 5L, 6L, 4L, 6L, 6L, 5L, 5L, 5L, 4L, 5L, 4L, 6L, 5L, 6L, 6L,  6L, 6L, 6L, 5L, NA, 6L, 6L, 5L, 6L, 6L, 5L, 5L, 4L, 5L, 6L, 5L,  4L, 5L, 4L, 5L, 5L, 5L, 4L, 6L, 6L, 5L, 6L, 5L, 6L, NA, 5L, 6L,  5L, 3L, 6L, NA, 5L, 4L, 5L, NA, NA, NA, 4L, NA, NA, NA, 6L, 4L,  6L, 5L, NA, 5L, NA, 1L, 6L, 5L, 6L, 6L, 5L, NA, NA, 5L, 5L, 6L,  NA, 6L, 6L, 1L, 6L, 1L, 6L, 6L, 6L, 2L, 6L, 1L, NA, 6L, 5L, 4L,  6L, 5L, 6L, 2L, 6L, 4L, 2L, 3L, 6L, 6L, NA, 4L, 6L, 6L, 6L, 2L,  4L, NA, 3L, NA, NA, NA, 1L, NA, 2L, 2L, NA, 4L, 2L, 1L, 1L, 2L,  1L, 4L, NA, NA, 6L, 6L, NA, 1L, NA, 1L, 2L, 1L, 1L, 1L, 2L, 1L,  NA, NA, 1L, 2L, 2L, 1L, NA, 2L, NA, NA, 6L, 6L, NA, 6L, NA, 2L,  NA, NA, NA, 6L, NA, 6L, NA, 4L, 6L, 4L, NA, 4L, 6L, 6L, 6L, NA,  4L, 5L, NA, 6L, 2L, 4L, 3L, NA, 1L, 6L, 2L, 3L, 4L, 2L, 6L, 3L,  5L, NA, 6L, 6L, 6L, 6L, NA, NA, NA, 6L, 6L, 2L, 6L, 6L, NA, 4L,  4L, 5L, 6L, 6L, 6L, 6L, NA, 4L, 6L, 2L, 3L, 6L, 2L, 6L, 6L, NA,  5L, NA, 4L, NA, 6L, NA, 3L, 5L, 6L, 6L, 2L, NA, 4L, NA, 5L, NA,  NA, 5L, 6L, NA, NA, 5L, NA, 4L, NA, 5L, NA, 6L, 6L, NA, NA, 6L,  6L, 5L, 5L, 5L, NA, 6L, 5L, 6L, 6L, 6L, 6L, 5L, NA, 5L, 4L, 6L,  1L, 5L, 5L, 5L, 5L, 6L, 5L, 1L, 6L, 3L, 6L, 4L, 4L, NA, NA, 3L,  6L, 5L, 2L, 2L, 5L, 5L, 6L, NA, 6L, NA, 6L, 5L, 6L, 5L, 3L, 6L,  6L, 6L, 6L, 6L, 5L, 6L, 5L, 6L, 5L, 6L, 3L, NA, 6L, NA, 6L, NA,  NA, 6L, 6L, 6L, 6L, 5L, 6L, 6L, 6L, 5L, 6L, 2L, 6L, 6L, 5L, 5L,  5L, 1L, 6L, NA, NA, 5L, 6L, NA, 6L, 4L, NA, 6L, NA, 6L, 5L, 6L,  5L, 6L, 6L, 5L, 5L, 5L, 5L, NA, 5L, NA, NA, 5L, NA, NA, NA, 6L,  6L, 5L, 6L, 6L, 6L, 6L, 6L, 5L, NA, 7L, 6L, 6L, 6L, 5L, NA, 6L,  6L, 5L, 6L, 6L, NA, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 5L, 6L, NA, NA,  6L, NA, 6L, 6L, 6L, 6L, 4L, 6L, 4L, NA, 6L, 5L, 6L, 5L, 5L, NA,  6L, 6L, 5L, 6L, 5L, 5L, 6L, 6L, 6L, 6L, 4L, 6L, 6L, 6L, 6L, 6L,  6L, 6L, 5L, 6L, 5L, NA, 5L, 5L, NA, 6L, 2L, 5L, NA, 5L, 5L, 3L,  6L, NA, 4L, 4L, 6L, 6L, 5L, 6L, NA, 1L, 6L, 6L, 5L, 6L, 5L, 6L,  NA, 2L, 6L, 6L, 5L, NA, 6L, 4L, 5L, 5L, 5L, 6L, 5L, 5L, 6L, 6L,  5L, 5L, 5L, 5L, 6L, 6L, 5L, 6L, 5L, 6L, 6L, 6L, 6L, 6L, 5L, NA,  NA, NA, 6L, NA, 5L, NA, 6L, NA, NA, 5L, 2L, 6L, 5L, 5L, 5L, NA,  7L, 6L, 6L, NA, 5L, 6L, 6L, NA, 6L, 6L, 6L, 5L, 6L, NA, 6L, NA,  6L, 6L, NA, 5L, 6L, 5L, NA, 1L, 3L, 3L, NA, 6L, 5L, 6L, 5L, NA,  6L, 6L, 5L, NA, 5L, 5L, 6L, 5L, 5L, 5L, 5L, 6L, 5L, 6L, 6L, NA,  5L, 6L, 5L, 6L, 6L, 5L, 6L, 6L, 6L, 6L, 5L, 4L, 6L, 5L, NA, 6L,  5L, 5L, 1L, 5L, 5L, 5L, 5L, 5L, NA, 5L, 5L, 6L, 5L, 6L, 6L, 6L,  1L, 5L, 6L, 4L, 6L, 6L, NA, 5L, 5L, 6L, 6L, 5L, 5L, 6L, 5L, 6L,  NA, 6L, 5L, 3L, 1L, 4L, 6L, 5L, NA, 5L, 5L, 5L, 5L, NA, 6L, 6L,  5L, 6L, 5L, NA, 5L, 5L, 6L, 5L, 5L, 6L, 6L, NA, 5L, 6L, 5L, 5L,  5L, 4L, 6L, 6L, 5L, NA, 4L, NA, 5L, 5L, 5L, NA, 5L, 4L, 6L, 5L,  6L, 3L, 6L, 4L, NA, 6L, NA, 3L, NA, NA, 5L, 5L, 6L, 5L, 6L, 5L,  NA, NA, NA, 5L, 6L, 6L, 6L, 6L, 6L, 5L, 6L, 5L, 3L, NA, 5L, 6L,  6L, 4L, 6L, NA, 3L, 6L, 5L, 4L, 6L), .Label = c("Comparateur1",  "Comparateur2", "Comparateur3", "Comparateur4", "Comparateur5",  "Comparateur6", "Comparateur7"), class = "factor")), row.names = c(NA,  -6993L), class = "data.frame")
+\end{verbatim}
+
+\begin{verbatim}
+## $Numeric
+## list()
+## 
+## $Factor
+## $Factor$x
+##          
+## x         Comparateur6 Comparateur5       <NA> Comparateur4 Comparateur1
+##   Count     2401.00000   1726.00000 1157.00000   619.000000   481.000000
+##   Percent     34.33433     24.68182   16.54512     8.851709     6.878307
+##          
+## x         Comparateur2 Comparateur3 Comparateur7
+##   Count     357.000000   216.000000   36.0000000
+##   Percent     5.105105     3.088803    0.5148005
+## 
+## 
+## $Logical
+## list()
+\end{verbatim}
+
+\textbf{Remarque:} Nous remarquons qu'il y'a des ``NA'' dans la variable
+COMPAR nous devons afin de manipuler l'information extraire les
+informations pertinentes soit extraire les lignes de notre tables qui
+sont non vides.
+
+Type caractère: OK
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra[,AMTPREM]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE 
+##  6993
+\end{verbatim}
+
+\textbf{Conclusion:} Aucun NA dans la variable AMTPREM
+
+\begin{itemize}
+\tightlist
+\item
+  Extraire les données ayant la variable COMPAR non vide
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_comp=contra[COMPAR}\OperatorTok{!=}\StringTok{"NA"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+vérification
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{COMPAR,}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Comparateur1 Comparateur2 Comparateur3 Comparateur4 Comparateur5 Comparateur6 
+##          481          357          216          619         1726         2401 
+## Comparateur7         <NA> 
+##           36            0
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Identifions les probables problèmes de type pour le formattage des
+  données
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(contra_comp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'data.table' and 'data.frame':   5836 obs. of  24 variables:
+##  $ IDPOL  : Factor w/ 6990 levels "000B46F609","0010C764A2",..: 1201 6569 406 3130 893 398 6338 6457 4255 4398 ...
+##  $ DATEEFF: Factor w/ 778 levels "2011-01-12","2011-02-10",..: 2 10 13 13 20 19 16 7 7 1 ...
+##  $ IDCLI  : Factor w/ 6979 levels "00047E6ABB","001051A2D8",..: 3272 2054 1020 1180 4209 2134 6413 5236 4872 4985 ...
+##  $ IDPART : Factor w/ 1823 levels "0022344D31","00642A0F69",..: NA 352 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI1 : Factor w/ 1980 levels "005365B5B3","007E75CB81",..: NA 346 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI2 : Factor w/ 1101 levels "0021F9CEEB","007291596D",..: NA 779 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI3 : Factor w/ 189 levels "011BDAC4A2","01B8C58ADE",..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI4 : Factor w/ 31 levels "02F9E21EC2","0AB39C9B8A",..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI5 : Factor w/ 2 levels "22587BB280","D2D2B0253F": NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI6 : logi  NA NA NA NA NA NA ...
+##  $ FORMU  : Factor w/ 4 levels "FOR1","FOR2",..: 1 4 2 3 4 4 1 4 4 1 ...
+##  $ DATECAN: Factor w/ 685 levels "2011-12-13","2011-12-18",..: 685 542 542 542 542 542 390 390 390 390 ...
+##  $ REACAN : Factor w/ 3 levels "Cancel renewal policy",..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ AMTPREM: Factor w/ 4845 levels "1000.32","1000.44",..: 1455 4242 1977 3628 4738 4320 1401 1692 2136 2606 ...
+##  $ RANKAGG: int  1 4 1 2 2 6 1 1 3 2 ...
+##  $ COMPAR : Factor w/ 7 levels "Comparateur1",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ MARCLI : Factor w/ 5 levels "Cohabitant / Pacs",..: 4 2 4 4 4 4 4 4 4 4 ...
+##  $ SEXCLI : Factor w/ 2 levels "F","M": 2 2 2 2 1 1 2 2 2 2 ...
+##  $ DTNCLI : Factor w/ 5539 levels "1937-07-30","1937-11-08",..: 2750 1125 2260 420 72 553 3082 2163 1290 818 ...
+##  $ PROFCLI: Factor w/ 13 levels "Company head",..: 3 3 3 3 8 3 3 12 3 3 ...
+##  $ CP     : int  29200 1700 45260 74130 14600 66600 44200 15500 34500 6000 ...
+##  $ SEXCJ  : Factor w/ 2 levels "F","M": NA 1 NA NA NA NA NA NA NA NA ...
+##  $ DTNCJ  : Factor w/ 1697 levels "1940-01-16","1941-09-06",..: NA 1070 NA NA NA NA NA NA NA NA ...
+##  $ PROFCJ : Factor w/ 14 levels "Company head",..: NA 3 NA NA NA NA NA NA NA NA ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+
+\textbf{Remarque :} Le type de la variable AMTPREM qui représente les
+primes versées, n'est pas adéquat, nous devons changer le type en
+numérique.
+
+\begin{itemize}
+\tightlist
+\item
+  Variable primes
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_comp}\OperatorTok{$}\NormalTok{AMTPREM=}\KeywordTok{as.double}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{AMTPREM)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Vérification
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{AMTPREM)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+Modification OK
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp[,AMTPREM]),}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  <NA> 
+##  5836     0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp[,SEXCLI]),}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  <NA> 
+##  5836     0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp[,FORMU]),}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  <NA> 
+##  5836     0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp[,COMPAR]),}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  <NA> 
+##  5836     0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp[,MARCLI]),}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  <NA> 
+##  5836     0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(contra_comp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         IDPOL            DATEEFF            IDCLI             IDPART    
+##  5DA4AB893C:   2   2018-01-01: 321   0FF7B65E3F:   2   05951BEE48:   2  
+##  AFB99189E1:   2   2017-01-02: 141   2CABA15A47:   2   0022344D31:   1  
+##  F4631B2A31:   2   2017-01-04: 122   2CE3E0F5D5:   2   00642A0F69:   1  
+##  000B46F609:   1   2017-01-12: 105   A0C919874D:   2   00D12ACBC6:   1  
+##  0010C764A2:   1   2015-01-01: 104   E1DADD36E8:   2   010E2887EE:   1  
+##  0014EBDBEB:   1   2014-01-01:  99   00047E6ABB:   1   (Other)   :1495  
+##  (Other)   :5827   (Other)   :4944   (Other)   :5825   NA's      :4335  
+##         IDCHI1            IDCHI2            IDCHI3            IDCHI4    
+##  7AFDF293CA:   2   107DBA0E6D:   2   011BDAC4A2:   1   02F9E21EC2:   1  
+##  005365B5B3:   1   007291596D:   1   01B8C58ADE:   1   0AB39C9B8A:   1  
+##  007E75CB81:   1   00E6C55736:   1   038FC294D8:   1   0B927EE04F:   1  
+##  008410AEA6:   1   014233B42C:   1   0483187CA0:   1   13AE15F74A:   1  
+##  00877AC0FD:   1   026D232DB0:   1   05A3B4FC00:   1   21A96F7944:   1  
+##  (Other)   :1626   (Other)   : 899   (Other)   : 154   (Other)   :  24  
+##  NA's      :4204   NA's      :4931   NA's      :5677   NA's      :5807  
+##         IDCHI5      IDCHI6         FORMU            DATECAN    
+##  22587BB280:   1   Mode:logical   FOR1: 368   2015-12-31:  16  
+##  D2D2B0253F:   1   NA's:5836      FOR2: 164   2016-02-28:  11  
+##  NA's      :5834                  FOR3: 118   2016-12-15:   8  
+##                                   FOR4:5186   2017-01-20:   8  
+##                                               2014-01-31:   7  
+##                                               (Other)   :1099  
+##                                               NA's      :4687  
+##                                        REACAN        AMTPREM    
+##  Cancel renewal policy                    : 234   Min.   :   2  
+##  Cancellation on renewal from the customer: 623   1st Qu.:1593  
+##  Non-payment of the premium               :1745   Median :2502  
+##  NA's                                     :3234   Mean   :2486  
+##                                                   3rd Qu.:3466  
+##                                                   Max.   :4845  
+##                                                                 
+##     RANKAGG                COMPAR                      MARCLI     SEXCLI  
+##  Min.   : 0.000   Comparateur1: 481   Cohabitant / Pacs   : 604   F:2715  
+##  1st Qu.: 1.000   Comparateur2: 357   Married             :1816   M:3121  
+##  Median : 2.000   Comparateur3: 216   Separated / Divorced: 184           
+##  Mean   : 2.711   Comparateur4: 619   Single              :3207           
+##  3rd Qu.: 3.000   Comparateur5:1726   widower             :  25           
+##  Max.   :16.000   Comparateur6:2401                                       
+##  NA's   :3328     Comparateur7:  36                                       
+##         DTNCLI                               PROFCLI           CP       
+##  1973-12-19:   5   Without profession            :1890   Min.   : 1000  
+##  1977-10-31:   5   Employee                      :1876   1st Qu.:34970  
+##  1991-02-21:   5   Other                         :1250   Median :63380  
+##  1968-01-15:   4   Public administration employee: 399   Mean   :58668  
+##  1976-08-07:   4   Retired                       : 129   3rd Qu.:78415  
+##  1981-04-19:   4   Executive                     :  95   Max.   :95880  
+##  (Other)   :5809   (Other)                       : 197                  
+##   SEXCJ             DTNCJ                                 PROFCJ    
+##  F   : 888   1958-08-17:   3   Employee                      : 555  
+##  M   : 613   1965-11-27:   3   Without profession            : 483  
+##  NA's:4335   1970-03-03:   3   Other                         : 294  
+##              1973-03-29:   3   Public administration employee:  90  
+##              1973-05-02:   3   Executive                     :  22  
+##              (Other)   :1486   (Other)                       :  57  
+##              NA's      :4335   NA's                          :4335
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(contra_comp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'data.table' and 'data.frame':   5836 obs. of  24 variables:
+##  $ IDPOL  : Factor w/ 6990 levels "000B46F609","0010C764A2",..: 1201 6569 406 3130 893 398 6338 6457 4255 4398 ...
+##  $ DATEEFF: Factor w/ 778 levels "2011-01-12","2011-02-10",..: 2 10 13 13 20 19 16 7 7 1 ...
+##  $ IDCLI  : Factor w/ 6979 levels "00047E6ABB","001051A2D8",..: 3272 2054 1020 1180 4209 2134 6413 5236 4872 4985 ...
+##  $ IDPART : Factor w/ 1823 levels "0022344D31","00642A0F69",..: NA 352 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI1 : Factor w/ 1980 levels "005365B5B3","007E75CB81",..: NA 346 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI2 : Factor w/ 1101 levels "0021F9CEEB","007291596D",..: NA 779 NA NA NA NA NA NA NA NA ...
+##  $ IDCHI3 : Factor w/ 189 levels "011BDAC4A2","01B8C58ADE",..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI4 : Factor w/ 31 levels "02F9E21EC2","0AB39C9B8A",..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI5 : Factor w/ 2 levels "22587BB280","D2D2B0253F": NA NA NA NA NA NA NA NA NA NA ...
+##  $ IDCHI6 : logi  NA NA NA NA NA NA ...
+##  $ FORMU  : Factor w/ 4 levels "FOR1","FOR2",..: 1 4 2 3 4 4 1 4 4 1 ...
+##  $ DATECAN: Factor w/ 685 levels "2011-12-13","2011-12-18",..: 685 542 542 542 542 542 390 390 390 390 ...
+##  $ REACAN : Factor w/ 3 levels "Cancel renewal policy",..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ AMTPREM: num  1455 4242 1977 3628 4738 ...
+##  $ RANKAGG: int  1 4 1 2 2 6 1 1 3 2 ...
+##  $ COMPAR : Factor w/ 7 levels "Comparateur1",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ MARCLI : Factor w/ 5 levels "Cohabitant / Pacs",..: 4 2 4 4 4 4 4 4 4 4 ...
+##  $ SEXCLI : Factor w/ 2 levels "F","M": 2 2 2 2 1 1 2 2 2 2 ...
+##  $ DTNCLI : Factor w/ 5539 levels "1937-07-30","1937-11-08",..: 2750 1125 2260 420 72 553 3082 2163 1290 818 ...
+##  $ PROFCLI: Factor w/ 13 levels "Company head",..: 3 3 3 3 8 3 3 12 3 3 ...
+##  $ CP     : int  29200 1700 45260 74130 14600 66600 44200 15500 34500 6000 ...
+##  $ SEXCJ  : Factor w/ 2 levels "F","M": NA 1 NA NA NA NA NA NA NA NA ...
+##  $ DTNCJ  : Factor w/ 1697 levels "1940-01-16","1941-09-06",..: NA 1070 NA NA NA NA NA NA NA NA ...
+##  $ PROFCJ : Factor w/ 14 levels "Company head",..: NA 3 NA NA NA NA NA NA NA NA ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{visualisation-de-nos-variables}{%
+\subsection{Visualisation de nos
+variables}\label{visualisation-de-nos-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{table}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{COMPAR))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_comp,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+Le comparateur 6 et le comparateur5 sont les plus utilisés. il serait
+intéressant de vérifier notre rang sur chacun de ses comparateurs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_comp,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{RANKAGG,}\DataTypeTok{fill=}\NormalTok{COMPAR))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 3328 rows containing non-finite values (stat_count).
+\end{verbatim}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+On voit clairement que notre assureur est mieux classé sur les
+``comparateur6'' et ``comparateur5'' suivi du ``comparateur4''. On peut
+donc conclure que mieux notre assureur est bien classé et plus les
+assurés souscrivent à nos polices d'assurance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{AMTPREM))}\OperatorTok{+}
+
+\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\textbf{Interprétaton :}
+
+\begin{itemize}
+\item
+  On comprend mieux les raisons pour lesquelles les cliens ont plus
+  souscrits via les comparateur6 et comparateur5. Car ces primes sur ces
+  comparateurs sont plus faibles que tous les autres.
+\item
+  Via Le comparateur7, les clients bénéficient de primes à bas prix, on
+  pourrait se demander pourquoi après les comparateur6 et comparateur5,
+  ce n'est pas le comparateur7 qui suit, mais plutôt le 4, où pourtant
+  les primes sont assez élevées.
+\item
+  Un piste de solution serait dû au fait que notre assureur est bien
+  classé sur les comparateurs \textbf{6, 5, 4 et 1}. Ce qui n'est pas le
+  cas du comparateur7 où nous sommes mal classés( confert diagramme du
+  rang en fonction des comparateurs).
+\end{itemize}
+
+\textbf{Conclusion :}On peut donc affirmer que le classement sur le
+comparateur est d'une importance capitale.
+
+\hypertarget{analyse-des-primes-en-fonction-des-comparateurs-et-des-diffuxe9rentes-formules-souscrites}{%
+\subsection{Analyse des primes en fonction des comparateurs et des
+différentes formules
+souscrites}\label{analyse-des-primes-en-fonction-des-comparateurs-et-des-diffuxe9rentes-formules-souscrites}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{AMTPREM))}\OperatorTok{+}
+
+\KeywordTok{geom_boxplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{FORMU)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Analyse des primes en fonction des comparateurs }\CharTok{\textbackslash{}n}\StringTok{ et des différentes formules des contrats"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{fill=}\NormalTok{FORMU))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des différentes formules par comparateur"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("flexdashboard")}
+
+\CommentTok{#install.packages("htmltools")}
+
+\CommentTok{#install.packages("shiny")}
+
+\KeywordTok{library}\NormalTok{(flexdashboard)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'flexdashboard' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(htmltools)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'htmltools' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'shiny' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+  \KeywordTok{fillCol}\NormalTok{(}\DataTypeTok{height =} \DecValTok{600}\NormalTok{, }\DataTypeTok{flex =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{1}\NormalTok{), }
+
+  \KeywordTok{inputPanel}\NormalTok{(}
+
+      \KeywordTok{selectInput}\NormalTok{(}\StringTok{"COMPAR"}\NormalTok{, }\StringTok{"Comparateur:"}\NormalTok{, }\DataTypeTok{choices =}\KeywordTok{levels}\NormalTok{(contra}\OperatorTok{$}\NormalTok{COMPAR) )}
+
+\NormalTok{    ),}
+
+    \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"formuPlot"}\NormalTok{, }\DataTypeTok{height =} \StringTok{"100%"}\NormalTok{)}
+
+\NormalTok{  )}
+
+\NormalTok{)}
+
+
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+\NormalTok{  output}\OperatorTok{$}\NormalTok{formuPlot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+
+    \KeywordTok{ggplot}\NormalTok{(}\KeywordTok{subset}\NormalTok{(contra_comp, COMPAR}\OperatorTok{==}\NormalTok{input}\OperatorTok{$}\NormalTok{COMPAR),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{FORMU))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}
+
+\NormalTok{  \})}
+
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui=}\NormalTok{ui,}\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+\end{verbatim}
+
+Shiny applications not supported in static R Markdown documents
+
+\textbf{Interprétation :}
+
+\begin{itemize}
+\item
+  la formule 4 est la formule la plus souscrite et ce notament via le
+  comparateur 6.
+\item
+  De même, on constate que le comparateur6 et comparateur5 proposent des
+  primes plus basses pour les formules d'assurance. Ce qui explique une
+  fois de plus que les assurés ont majoritairement souscrit à des
+  polices via les comparateurs 6 et 7.
+\item
+  Le comparateur propose des formules trop chères.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{analyse-des-caractuxe9ristiques-des-clients-ayant-souscrit-via-les-diffuxe9rents-comparateurs}{%
+\subsection{Analyse des caractéristiques des clients ayant souscrit via
+les différents
+comparateurs}\label{analyse-des-caractuxe9ristiques-des-clients-ayant-souscrit-via-les-diffuxe9rents-comparateurs}}
+
+\#\#\#1. la situation professionnelle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(contra_comp[,PROFCLI],}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##                   Company head                      Craftsman 
+##                             12                             11 
+##                       Employee                      Executive 
+##                           1876                             95 
+##                      Freelance                          Other 
+##                             24                           1250 
+## Public administration employee                        Retired 
+##                            399                            129 
+##                     Shopkeaper                        Student 
+##                              7                             28 
+##                        Teacher             Without profession 
+##                             62                           1890 
+##                         Worker                           <NA> 
+##                             53                              0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_comp,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{PROFCLI))}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des différentes professions"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+Remarque : Notre base des assurés est constitué majoritairement de
+personnes sans emploi et d'employés.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{PROFCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des comparateurs par profession"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\textbf{Interprétation :}
+
+\begin{itemize}
+\item
+  On remarque qu'indépendament de la profession, le comparateur6 reste
+  le comparateur qui attire le plus de clients.
+\item
+  Il est important de remarquer de remarquer que les clients qui sont
+  d'autres professions(``other'') ont pour la plupart souscrits via le
+  comparateur5
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\#\#\#2. le sexe
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tabsex=}\KeywordTok{table}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{SEXCLI,}\DataTypeTok{useNA =} \StringTok{"always"}\NormalTok{)}
+
+\KeywordTok{print}\NormalTok{(tabsex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    F    M <NA> 
+## 2715 3121    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tabsex_freq=tabsex}\OperatorTok{*}\DecValTok{100}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(contra_comp)}
+
+\NormalTok{tabsex_freq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##        F        M     <NA> 
+## 46.52159 53.47841  0.00000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{SEXCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des comparateurs pour chaque sexe"}\NormalTok{)}\OperatorTok{+}\StringTok{ }\KeywordTok{theme_stata}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_color_stata}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+Interprétation:
+
+\begin{itemize}
+\item
+  On peut dire que le sexe des différents clients ne permet pas
+  d'expliquer le choix des différents comparateurs.
+\item
+  Les clients hommes et femmes ne sont pas si différents dans leurs
+  choix. Ils ont souscrit tous majoritairement via le comparateur 6 et
+  7.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggsci"}\NormalTok{)}
+
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(FORMU}\OperatorTok{~}\NormalTok{SEXCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition du choix des différents comparateurs }\CharTok{\textbackslash{}n}\StringTok{ pour chaque formule et par sexe"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\textbf{Interprétation:}
+
+Ce graphique confirme le fait que les clients hommes et femmes ont
+sensiblement les mêmes caractéristiques. \textbf{Ils ont tous
+majoritement souscrit à la Formule 4 et cela via les comparateurs 6 et
+7.}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\#\#\#3. Le statut marital
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(contra}\OperatorTok{$}\NormalTok{MARCLI)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    Cohabitant / Pacs              Married Separated / Divorced 
+##                  794                 2138                  255 
+##               Single              widower 
+##                 3776                   30
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{AMTPREM))}\OperatorTok{+}
+
+\KeywordTok{geom_boxplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{MARCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Analyse des primes en fonction des comparateurs }\CharTok{\textbackslash{}n}\StringTok{ et du statut marital du client"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab_prim=contra_comp[,.(}\DataTypeTok{moyenne_prim=}\KeywordTok{mean}\NormalTok{(AMTPREM)),by=MARCLI]}
+
+\KeywordTok{print}\NormalTok{(tab_prim)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  MARCLI moyenne_prim
+## 1:               Single     2652.588
+## 2:              Married     2121.465
+## 3:    Cohabitant / Pacs     2473.952
+## 4: Separated / Divorced     3167.114
+## 5:              widower     2902.320
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab_compa=contra_comp[,.(}\DataTypeTok{moyenne_prim=}\KeywordTok{mean}\NormalTok{(AMTPREM)),by=COMPAR]}
+
+\KeywordTok{print}\NormalTok{(tab_compa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          COMPAR moyenne_prim
+## 1: Comparateur1     2493.732
+## 2: Comparateur2     2445.583
+## 3: Comparateur3     2290.065
+## 4: Comparateur4     2427.729
+## 5: Comparateur5     2544.475
+## 6: Comparateur6     2479.122
+## 7: Comparateur7     2635.944
+\end{verbatim}
+
+\textbf{Interprétations:}
+
+Des schémas ci-dessus, on peut dire que :
+
+\begin{itemize}
+\item
+  Les clients marriés paient des primes plus élevées que tous les autres
+  suivi des veufs.
+\item
+  les célibataires paient les primes les moins élevées
+\item
+  Les clients ayant souscrit un contrat via le comparateur 4, ont payé
+  des primes plus élevées.
+\item
+  Les mariés qui ont souscrit via le comparateur 5 paient les primes les
+  plus basses parmi les clients marriés.( il serait intéressant
+  d'analyser plus tard les formules les plus appréciées et si le nombre
+  d'enfants a eu une influence dans le choix des diférentes formules)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR))}\OperatorTok{+}
+
+\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{MARCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des comparateurs }\CharTok{\textbackslash{}n}\StringTok{ en fonction du statut marital des clients"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{FORMU,}\DataTypeTok{fill=}\NormalTok{COMPAR))}\OperatorTok{+}
+\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{MARCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des formules et du comparateur }\CharTok{\textbackslash{}n}\StringTok{ pour chaque statut marital des clients"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\textbf{Remarque:}
+
+\begin{itemize}
+\item
+  La formule 4 est très apréciée qu'importe le statut marital du client.
+\item
+  La formule 4 est très appréciée notamement des célibataires et des
+  marriés
+\item
+  Qu'importe le statut marital, les clients ont souscrit à la formule
+  majoritairement via les \textbf{comparateurs 6 et 5}. Cela s'explique
+  notamment par le fait que les primes souscrites via les comparateurs 6
+  et 5, sont les plus basses de notre protefeuille; et ces comparateurs
+  sont aussi ceux où notre assureur est le mieux classé.
+
+  \textbf{On voit à clairement un rapport entre le classement de notre
+  assureur sur un comparateur et le nombre d'assurés ayant souscrit via
+  ce comparateur.}
+\item
+  Analyse des choix des formules d'assurance par satut marital et pour
+  chaque comparateur
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_comp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{FORMU))}\OperatorTok{+}
+
+\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(COMPAR}\OperatorTok{~}\NormalTok{MARCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des formules }\CharTok{\textbackslash{}n}\StringTok{ et par comparateur et statut marital des clients"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+Remarque :
+
+Qu'importe le comparateur et le statut marital, les assurés ont plus
+souscrit à la formule 4, elle reste la plus avantageuse pour nos
+assurés.
+
+\begin{itemize}
+\tightlist
+\item
+  Moyenne des primes par formule
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab_form=contra_comp[,.(}\DataTypeTok{moy_prim=}\KeywordTok{mean}\NormalTok{(AMTPREM),}\DataTypeTok{nombre=}\NormalTok{.N),by=.(FORMU)]}
+
+\KeywordTok{print}\NormalTok{(tab_form)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    FORMU moy_prim nombre
+## 1:  FOR1 2409.190    368
+## 2:  FOR4 2484.656   5186
+## 3:  FOR2 2458.055    164
+## 4:  FOR3 2829.466    118
+\end{verbatim}
+
+\textbf{Interprétations:}
+
+\begin{itemize}
+\tightlist
+\item
+  le tableau ci dessus,explique mieux pourquoi la formule 4 est la plus
+  apréciée des clients, elle offre les primes les plus basses.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Le nombre d'enfants
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nbre_enfant=}\KeywordTok{as.integer}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{IDCHI1))}\OperatorTok{+}\KeywordTok{as.integer}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{IDCHI2))}\OperatorTok{+}\KeywordTok{as.integer}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{IDCHI3))}\OperatorTok{+}\KeywordTok{as.integer}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{IDCHI4))}\OperatorTok{+}\KeywordTok{as.integer}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{IDCHI5))}\OperatorTok{+}\KeywordTok{as.integer}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{IDCHI6))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_comp[,nombre_enfants}\OperatorTok{:}\ErrorTok{=}\NormalTok{nbre_enfant]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Statistiques sur le nombre d'enfants
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{nombre_enfants)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.4673  1.0000  5.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab_enf=}\KeywordTok{table}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{nombre_enfants)}
+
+\KeywordTok{print}\NormalTok{(tab_enf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    0    1    2    3    4    5 
+## 4204  727  746  130   27    2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{table}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{nombre_enfants))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab_freq=tab_enf}\OperatorTok{*}\DecValTok{100}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(contra_comp)}
+
+\KeywordTok{print}\NormalTok{(tab_freq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##           0           1           2           3           4           5 
+## 72.03564085 12.45716244 12.78272790  2.22755312  0.46264565  0.03427005
+\end{verbatim}
+
+Remarque:
+
+Notre base est constituée à plus de 70\% par des clients n'ayant aucun
+enfant et à plus de 95\% de clients ayant moins de 2 enfants.
+
+\begin{itemize}
+\tightlist
+\item
+  Nous allons donc analyser le choix des différentes formules et des
+  comparateurs en fonction du nombre d'enfants de chaque client, pour
+  ainsi voir si le nombre d'enfants influence le choix de la formule.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_comp,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{FORMU,}\DataTypeTok{fill=}\KeywordTok{as.factor}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{nombre_enfants)))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill=}\StringTok{"Nombre d'enfants"}\NormalTok{)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition du nombre d'enfants par formule"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_comp,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{FORMU))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Analyse du choix des formules en fonction du nombre d'enfants"}\NormalTok{)}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{nombre_enfants)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\textbf{Interprétation :}
+
+Qu'importe le nombre d'enfants, la formule 4 demeure la plus
+appréciée.\emph{texte en italique}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_comp,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{()}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Analyse des comparateurs en fonction du nombre d'enfants"}\NormalTok{)}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{nombre_enfants)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\textbf{Interprétation:}
+
+Le nombre d'enfants des clients n'a pas influencé le fait que la plus
+grande partie de nos assurés aient souscrit via les comparateurs 6 et 5.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{duruxe9e-des-contrats}{%
+\subsubsection{4. Durée des contrats}\label{duruxe9e-des-contrats}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{DATEEFF))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE 
+##  5836
+\end{verbatim}
+
+Tous les contrats possèdent une date d'effet de garantie
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{DATECAN))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  TRUE 
+##  1149  4687
+\end{verbatim}
+
+Il y'a 4687 contrats sans date de résiliation et 1149 contrats résiliés
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_comp[DATECAN}\OperatorTok{==}\StringTok{"NA"}\NormalTok{,resilie}\OperatorTok{:}\ErrorTok{=}\StringTok{"Non"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_comp[}\KeywordTok{is.na}\NormalTok{(DATECAN),resilie}\OperatorTok{:}\ErrorTok{=}\StringTok{"Non"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_comp[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(DATECAN),resilie}\OperatorTok{:}\ErrorTok{=}\StringTok{"Oui"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(contra_comp}\OperatorTok{$}\NormalTok{resilie)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Non  Oui 
+## 4687 1149
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Création de la variable représentant la durée des contrats pour les
+  contrats qui ont été résiliés
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#clients ayant résilié leurs contrats}
+
+\NormalTok{contra_resil=contra_comp[resilie}\OperatorTok{==}\StringTok{"Oui"}\NormalTok{]}
+
+\KeywordTok{print}\NormalTok{(contra_resil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            IDPOL    DATEEFF      IDCLI     IDPART     IDCHI1     IDCHI2 IDCHI3
+##    1: 2C7EAEF380 2011-02-10 7A61ADDB61       <NA>       <NA>       <NA>   <NA>
+##    2: F1125A72F9 2011-07-10 4E5D3AA63C 32D5615B20 2EF179B6C7 B09D69E316   <NA>
+##    3: 0F5BF8EA40 2011-08-10 283B50C751       <NA>       <NA>       <NA>   <NA>
+##    4: 73FB728155 2011-08-10 2DF3A65E55       <NA>       <NA>       <NA>   <NA>
+##    5: 21BFCE62CB 2012-01-01 9C968CCD1F       <NA>       <NA>       <NA>   <NA>
+##   ---                                                                         
+## 1145: CD2B50E2C8 2015-01-01 0459108AB7       <NA>       <NA>       <NA>   <NA>
+## 1146: 75B344BC5B 2015-01-01 7BD50DF5BD 8C1E9ADB9E E3EBF67A08 0B47EABB20   <NA>
+## 1147: 393975A549 2015-01-01 4C7F9A4B88       <NA>       <NA>       <NA>   <NA>
+## 1148: DA3E2F195B 2015-01-01 E8E1D8AB93       <NA>       <NA>       <NA>   <NA>
+## 1149: A240758C99 2015-01-01 66D9A5E612       <NA>       <NA>       <NA>   <NA>
+##       IDCHI4 IDCHI5 IDCHI6 FORMU    DATECAN
+##    1:   <NA>   <NA>     NA  FOR1 2017-12-31
+##    2:   <NA>   <NA>     NA  FOR4 2016-12-31
+##    3:   <NA>   <NA>     NA  FOR2 2016-12-31
+##    4:   <NA>   <NA>     NA  FOR3 2016-12-31
+##    5:   <NA>   <NA>     NA  FOR4 2016-12-31
+##   ---                                      
+## 1145:   <NA>   <NA>     NA  FOR4 2015-01-13
+## 1146:   <NA>   <NA>     NA  FOR1 2014-01-13
+## 1147:   <NA>   <NA>     NA  FOR4 2014-01-13
+## 1148:   <NA>   <NA>     NA  FOR2 2013-01-13
+## 1149:   <NA>   <NA>     NA  FOR4 2013-01-13
+##                                          REACAN AMTPREM RANKAGG       COMPAR
+##    1:                Non-payment of the premium    1455       1 Comparateur1
+##    2:                Non-payment of the premium    4242       4 Comparateur1
+##    3:                Non-payment of the premium    1977       1 Comparateur1
+##    4:                Non-payment of the premium    3628       2 Comparateur1
+##    5:                Non-payment of the premium    4738       2 Comparateur1
+##   ---                                                                       
+## 1145:                Non-payment of the premium    3680      NA Comparateur1
+## 1146:                     Cancel renewal policy    4794      NA Comparateur2
+## 1147:                     Cancel renewal policy    1631      NA Comparateur2
+## 1148:                Non-payment of the premium    1801      NA Comparateur2
+## 1149: Cancellation on renewal from the customer    3802      NA Comparateur4
+##                     MARCLI SEXCLI     DTNCLI            PROFCLI    CP SEXCJ
+##    1:               Single      M 1980-12-16           Employee 29200  <NA>
+##    2:              Married      M 1968-12-22           Employee  1700     F
+##    3:               Single      M 1977-06-08           Employee 45260  <NA>
+##    4:               Single      M 1960-09-05           Employee 74130  <NA>
+##    5:               Single      F 1951-02-19            Retired 14600  <NA>
+##   ---                                                                      
+## 1145:               Single      M 1955-01-13            Retired 95220  <NA>
+## 1146:    Cohabitant / Pacs      F 1969-07-16           Employee 29470     M
+## 1147:               Single      M 1990-12-01 Without profession 13011  <NA>
+## 1148: Separated / Divorced      M 1961-09-17 Without profession 67200  <NA>
+## 1149:               Single      F 1968-04-05           Employee 34560  <NA>
+##            DTNCJ             PROFCJ nombre_enfants resilie
+##    1:       <NA>               <NA>              0     Oui
+##    2: 1978-11-15           Employee              2     Oui
+##    3:       <NA>               <NA>              0     Oui
+##    4:       <NA>               <NA>              0     Oui
+##    5:       <NA>               <NA>              0     Oui
+##   ---                                                     
+## 1145:       <NA>               <NA>              0     Oui
+## 1146: 1966-11-28 Without profession              2     Oui
+## 1147:       <NA>               <NA>              0     Oui
+## 1148:       <NA>               <NA>              0     Oui
+## 1149:       <NA>               <NA>              0     Oui
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#conversion de caractères en dates}
+
+\NormalTok{date_deb=}\KeywordTok{as.Date}\NormalTok{(contra_resil}\OperatorTok{$}\NormalTok{DATEEFF,}\DataTypeTok{format =} \StringTok{"%Y-%m-%d"}\NormalTok{)}
+
+\NormalTok{date_fin=}\KeywordTok{as.Date}\NormalTok{(contra_resil}\OperatorTok{$}\NormalTok{DATECAN,}\DataTypeTok{format =} \StringTok{"%Y-%m-%d"}\NormalTok{)}
+
+\NormalTok{duree=date_fin}\OperatorTok{-}\NormalTok{date_deb}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(duree)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time differences in days
+## [1] 2516 2001 1970 1970 1826 1848
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_resil[,dureeContra}\OperatorTok{:}\ErrorTok{=}\NormalTok{duree]}
+
+\KeywordTok{head}\NormalTok{(contra_resil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         IDPOL    DATEEFF      IDCLI     IDPART     IDCHI1     IDCHI2 IDCHI3
+## 1: 2C7EAEF380 2011-02-10 7A61ADDB61       <NA>       <NA>       <NA>   <NA>
+## 2: F1125A72F9 2011-07-10 4E5D3AA63C 32D5615B20 2EF179B6C7 B09D69E316   <NA>
+## 3: 0F5BF8EA40 2011-08-10 283B50C751       <NA>       <NA>       <NA>   <NA>
+## 4: 73FB728155 2011-08-10 2DF3A65E55       <NA>       <NA>       <NA>   <NA>
+## 5: 21BFCE62CB 2012-01-01 9C968CCD1F       <NA>       <NA>       <NA>   <NA>
+## 6: 0EF51BD7B0 2011-12-10 51305185AA       <NA>       <NA>       <NA>   <NA>
+##    IDCHI4 IDCHI5 IDCHI6 FORMU    DATECAN                     REACAN AMTPREM
+## 1:   <NA>   <NA>     NA  FOR1 2017-12-31 Non-payment of the premium    1455
+## 2:   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium    4242
+## 3:   <NA>   <NA>     NA  FOR2 2016-12-31 Non-payment of the premium    1977
+## 4:   <NA>   <NA>     NA  FOR3 2016-12-31 Non-payment of the premium    3628
+## 5:   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium    4738
+## 6:   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium    4320
+##    RANKAGG       COMPAR  MARCLI SEXCLI     DTNCLI  PROFCLI    CP SEXCJ
+## 1:       1 Comparateur1  Single      M 1980-12-16 Employee 29200  <NA>
+## 2:       4 Comparateur1 Married      M 1968-12-22 Employee  1700     F
+## 3:       1 Comparateur1  Single      M 1977-06-08 Employee 45260  <NA>
+## 4:       2 Comparateur1  Single      M 1960-09-05 Employee 74130  <NA>
+## 5:       2 Comparateur1  Single      F 1951-02-19  Retired 14600  <NA>
+## 6:       6 Comparateur1  Single      F 1962-07-12 Employee 66600  <NA>
+##         DTNCJ   PROFCJ nombre_enfants resilie dureeContra
+## 1:       <NA>     <NA>              0     Oui   2516 days
+## 2: 1978-11-15 Employee              2     Oui   2001 days
+## 3:       <NA>     <NA>              0     Oui   1970 days
+## 4:       <NA>     <NA>              0     Oui   1970 days
+## 5:       <NA>     <NA>              0     Oui   1826 days
+## 6:       <NA>     <NA>              0     Oui   1848 days
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#distribution de la durée des contrats}
+
+\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_resil,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dureeContra))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Don't know how to automatically pick scale for object of type difftime. Defaulting to continuous.
+\end{verbatim}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+Remarque:
+
+Il y'a des dates négatives, qui ne sont pas conformes. Il faut les
+retirer de la base de données.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#les contrats non conformes}
+
+\NormalTok{a=contra_resil[}\KeywordTok{which}\NormalTok{(dureeContra}\OperatorTok{<}\DecValTok{0}\NormalTok{)]}
+
+\KeywordTok{head}\NormalTok{(a[,dureeContra])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time differences in days
+## [1] -320 -144  -46  -46  -47 -366
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_resil_clean=contra_resil[}\KeywordTok{which}\NormalTok{(dureeContra}\OperatorTok{>=}\DecValTok{0}\NormalTok{)]}
+
+\KeywordTok{head}\NormalTok{(contra_resil_clean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         IDPOL    DATEEFF      IDCLI     IDPART     IDCHI1     IDCHI2 IDCHI3
+## 1: 2C7EAEF380 2011-02-10 7A61ADDB61       <NA>       <NA>       <NA>   <NA>
+## 2: F1125A72F9 2011-07-10 4E5D3AA63C 32D5615B20 2EF179B6C7 B09D69E316   <NA>
+## 3: 0F5BF8EA40 2011-08-10 283B50C751       <NA>       <NA>       <NA>   <NA>
+## 4: 73FB728155 2011-08-10 2DF3A65E55       <NA>       <NA>       <NA>   <NA>
+## 5: 21BFCE62CB 2012-01-01 9C968CCD1F       <NA>       <NA>       <NA>   <NA>
+## 6: 0EF51BD7B0 2011-12-10 51305185AA       <NA>       <NA>       <NA>   <NA>
+##    IDCHI4 IDCHI5 IDCHI6 FORMU    DATECAN                     REACAN AMTPREM
+## 1:   <NA>   <NA>     NA  FOR1 2017-12-31 Non-payment of the premium    1455
+## 2:   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium    4242
+## 3:   <NA>   <NA>     NA  FOR2 2016-12-31 Non-payment of the premium    1977
+## 4:   <NA>   <NA>     NA  FOR3 2016-12-31 Non-payment of the premium    3628
+## 5:   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium    4738
+## 6:   <NA>   <NA>     NA  FOR4 2016-12-31 Non-payment of the premium    4320
+##    RANKAGG       COMPAR  MARCLI SEXCLI     DTNCLI  PROFCLI    CP SEXCJ
+## 1:       1 Comparateur1  Single      M 1980-12-16 Employee 29200  <NA>
+## 2:       4 Comparateur1 Married      M 1968-12-22 Employee  1700     F
+## 3:       1 Comparateur1  Single      M 1977-06-08 Employee 45260  <NA>
+## 4:       2 Comparateur1  Single      M 1960-09-05 Employee 74130  <NA>
+## 5:       2 Comparateur1  Single      F 1951-02-19  Retired 14600  <NA>
+## 6:       6 Comparateur1  Single      F 1962-07-12 Employee 66600  <NA>
+##         DTNCJ   PROFCJ nombre_enfants resilie dureeContra
+## 1:       <NA>     <NA>              0     Oui   2516 days
+## 2: 1978-11-15 Employee              2     Oui   2001 days
+## 3:       <NA>     <NA>              0     Oui   1970 days
+## 4:       <NA>     <NA>              0     Oui   1970 days
+## 5:       <NA>     <NA>              0     Oui   1826 days
+## 6:       <NA>     <NA>              0     Oui   1848 days
+\end{verbatim}
+
+Vérification
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_resil_clean,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{dureeContra))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Don't know how to automatically pick scale for object of type difftime. Defaulting to continuous.
+\end{verbatim}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{data=}\NormalTok{contra_resil_clean,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{dureeContra,}\DataTypeTok{y=}\NormalTok{..density..))}\OperatorTok{+}\KeywordTok{geom_density}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Don't know how to automatically pick scale for object of type difftime. Defaulting to continuous.
+\end{verbatim}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-70-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Analyse de la durée de la contrats par formule
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_resil_clean[,.(}\DataTypeTok{moyenne_duree=}\KeywordTok{mean}\NormalTok{(dureeContra),}\DataTypeTok{moyenne_primes=}\KeywordTok{mean}\NormalTok{(AMTPREM)),by=FORMU]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    FORMU  moyenne_duree moyenne_primes
+## 1:  FOR1 1058.8476 days       2417.229
+## 2:  FOR4  869.7993 days       2392.611
+## 3:  FOR2 1102.8367 days       2319.837
+## 4:  FOR3  885.9118 days       2521.294
+\end{verbatim}
+
+\textbf{Interprétation:}
+
+\begin{itemize}
+\item
+  Les clients qui ont souscrit aux formules 1 et 2 sont en général plus
+  fidèles et ont des durées de contrats plus longues.
+\item
+  Cela s'explique vu la moyenne des primes. Les formules 1 et 2 sont les
+  formules les moins chères et donc les clients sont en général plus
+  fidèles.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_resil_clean[,.(}\DataTypeTok{moyenne_duree=}\KeywordTok{mean}\NormalTok{(dureeContra),}\DataTypeTok{moyenne_primes=}\KeywordTok{mean}\NormalTok{(AMTPREM)),by=.(COMPAR)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          COMPAR  moyenne_duree moyenne_primes
+## 1: Comparateur1 1064.6655 days       2317.109
+## 2: Comparateur2  891.1818 days       2398.665
+## 3: Comparateur3  924.5068 days       2323.438
+## 4: Comparateur4  870.5975 days       2296.201
+## 5: Comparateur5  784.8833 days       2422.417
+## 6: Comparateur6  779.5037 days       2545.853
+\end{verbatim}
+
+\textbf{Interprétations:}
+
+\begin{itemize}
+\item
+  Le comparateur 1, bien que pas très convoité par les clients,est le
+  comparateur où les contrats sont plus les plus longs, cela s'explique
+  surement vu les prix des primes de chaque comparateur.
+\item
+  les clients souscrivent le plus via les comparateurs 6 et 5,bien
+  qu'offrant des primes relativement élevées.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{fusion-des-tables-contrats-et-prestations}{%
+\subsubsection{5. fusion des tables contrats et
+prestations}\label{fusion-des-tables-contrats-et-prestations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contra_prest=}\KeywordTok{merge}\NormalTok{(contra_comp, prest, }\DataTypeTok{by =} \StringTok{"IDPOL"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(contra_prest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         IDPOL    DATEEFF      IDCLI     IDPART     IDCHI1     IDCHI2 IDCHI3
+## 1: 000B46F609 2018-06-01 C1B23F6425 52BA84B9C0 6C1EE86F8C D04BB97D0B   <NA>
+## 2: 000B46F609 2018-06-01 C1B23F6425 52BA84B9C0 6C1EE86F8C D04BB97D0B   <NA>
+## 3: 000B46F609 2018-06-01 C1B23F6425 52BA84B9C0 6C1EE86F8C D04BB97D0B   <NA>
+## 4: 000B46F609 2018-06-01 C1B23F6425 52BA84B9C0 6C1EE86F8C D04BB97D0B   <NA>
+## 5: 000B46F609 2018-06-01 C1B23F6425 52BA84B9C0 6C1EE86F8C D04BB97D0B   <NA>
+## 6: 000B46F609 2018-06-01 C1B23F6425 52BA84B9C0 6C1EE86F8C D04BB97D0B   <NA>
+##    IDCHI4 IDCHI5 IDCHI6 FORMU DATECAN REACAN AMTPREM RANKAGG       COMPAR
+## 1:   <NA>   <NA>     NA  FOR4    <NA>   <NA>     296      NA Comparateur6
+## 2:   <NA>   <NA>     NA  FOR4    <NA>   <NA>     296      NA Comparateur6
+## 3:   <NA>   <NA>     NA  FOR4    <NA>   <NA>     296      NA Comparateur6
+## 4:   <NA>   <NA>     NA  FOR4    <NA>   <NA>     296      NA Comparateur6
+## 5:   <NA>   <NA>     NA  FOR4    <NA>   <NA>     296      NA Comparateur6
+## 6:   <NA>   <NA>     NA  FOR4    <NA>   <NA>     296      NA Comparateur6
+##     MARCLI SEXCLI     DTNCLI            PROFCLI    CP SEXCJ      DTNCJ
+## 1: Married      M 1969-06-07 Without profession 61270     F 1970-06-17
+## 2: Married      M 1969-06-07 Without profession 61270     F 1970-06-17
+## 3: Married      M 1969-06-07 Without profession 61270     F 1970-06-17
+## 4: Married      M 1969-06-07 Without profession 61270     F 1970-06-17
+## 5: Married      M 1969-06-07 Without profession 61270     F 1970-06-17
+## 6: Married      M 1969-06-07 Without profession 61270     F 1970-06-17
+##                PROFCJ nombre_enfants resilie     IDBENE         Categories
+## 1: Without profession              2     Non C1B23F6425 Soins ambulatoires
+## 2: Without profession              2     Non C1B23F6425 Soins ambulatoires
+## 3: Without profession              2     Non C1B23F6425 Soins ambulatoires
+## 4: Without profession              2     Non C1B23F6425 Soins ambulatoires
+## 5: Without profession              2     Non C1B23F6425          Pharmacie
+## 6: Without profession              2     Non C1B23F6425          Pharmacie
+##       Subcat                                       Name   Amt
+## 1:  MEDECINS CONSULTATION SPECIALISTE MEDECINE GENERALE 25.00
+## 2:  MEDECINS CONSULTATION SPECIALISTE MEDECINE GENERALE 25.00
+## 3:  MEDECINS                   CONSULTATION SPECIALISTE 50.00
+## 4:  MEDECINS CONSULTATION SPECIALISTE MEDECINE GENERALE 25.00
+## 5: PHARMACIE           PHARMACIE VIGNETTE BLANCHE (70%) 17.84
+## 6: PHARMACIE                                HONO DISP 7  1.02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dep_compa=contra_prest[,.(}\DataTypeTok{moyenne_dep=}\KeywordTok{mean}\NormalTok{(Amt)),by=COMPAR]}
+
+\KeywordTok{print}\NormalTok{(dep_compa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          COMPAR moyenne_dep
+## 1: Comparateur6    17.71492
+## 2: Comparateur5    18.48737
+## 3: Comparateur4    21.05894
+## 4: Comparateur1    13.61505
+## 5: Comparateur3    42.21789
+## 6: Comparateur2    26.55051
+## 7: Comparateur7    25.99386
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_prest, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{Amt))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat=}\StringTok{"identity"}\NormalTok{)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des sinistres en fonction des comparateurs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_prest, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{Amt))}\OperatorTok{+}\KeywordTok{geom_count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-77-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_prest, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{Amt))}\OperatorTok{+}\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat=}\StringTok{"identity"}\NormalTok{)}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{PROFCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des depenses par comparateurs et  par profession"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-78-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(contra_prest, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{COMPAR,}\DataTypeTok{y=}\NormalTok{AMTPREM))}\OperatorTok{+}
+
+\KeywordTok{geom_boxplot}\NormalTok{()}\OperatorTok{+}\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{MARCLI)}\OperatorTok{+}\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Répartition des depenses par comparateurs et  par profession"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{apercu_Projet_R_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+\end{document}

@@ -1,0 +1,642 @@
+---
+title: An R Markdown document converted from "C://Users//nzoro//OneDrive//Documents//Esilv//Actuariat//R_Cours//Projet_R_Enzo.ipynb"
+output: html_document
+---
+
+# **Projet Langage R** 
+
+## Description des variables 
+
+Descriptif des variables
+
+Fichier contrats
+- IDPOL: Identifiant du contrat d'assurance
+- DATEEFF: Date d'effet du contrat
+- IDCLI: Identifiant du client
+- IDPART: Identifiant du conjoint du client
+- IDCHI1: Identifiant de l'enfant numéro 1
+- IDCHI2: Identifiant de l'enfant numéro 2
+- IDCHI3: Identifiant de l'enfant numéro 3
+- IDCHI4: Identifiant de l'enfant numéro 4
+- IDCHI5: Identifiant de l'enfant numéro 5
+- IDCHI6: Identifiant de l'enfant numéro 6
+- FORMU: Formule du contrat
+- DATECAN: Date de résiliation
+- REACANC: Raison de résiliation
+- AMTPREM: Montant de prime
+- RANKAGG: Rang sur le comparateur
+- COMPAR: Comparateur
+- MARCLI: Statut marital du client
+- SEXCLI: Sexe du client
+- DTNCLI: Date de naissance du client
+- PROFCLI: Profession du client
+- CP: Code postal du client
+- SEXCJ: Sexe du conjoint
+- DTNCJ: Date de naissance du conjoint
+- PROFCJ: Profession du conjoint
+
+
+
+Fichier prestations
+- IDPOL: Identifiant du contrat d’assurance
+- IDBENE: Identificant du bénéficiaire (ça peut être l’assuré, le conjoint ou l’un des enfants)
+Categories: catégorie de prestation
+- Subcat: sous-catégorie de prestation
+- Name: libellé de prestation
+- Amt: montant de dépense
+
+```{r}
+
+```
+
+Durant ce projet, nous allons étudier la Situation des comparateurs, et l'importance des comparateurs dans notre portefeuille d'assurance.Pour cela, nous allons analyser plusieurs caratéristiques.
+
+```{r}
+contra=read.csv2("http://dataks.bitbucket.io/assurance/contrats.csv")
+prest=read.csv2("http://dataks.bitbucket.io/assurance/prestations_bene.csv")
+```
+
+```{r}
+contra
+```
+
+```{r}
+prest
+```
+
+- Packages
+ 
+
+```{r}
+install.packages("data.table")
+```
+
+```{r}
+install.packages("data.table")
+install.packages("tidyr")
+install.packages("dplyr")
+library("data.table")
+library("ggplot2")
+library("tidyr")
+library("dplyr")
+```
+
+- utilisation de data.table
+
+```{r}
+contra=data.table(contra)
+prest=data.table(prest)
+```
+
+
+
+# Manipulation des données
+
+```{r}
+str(contra)
+```
+
+- La variable comparateur
+
+```{r}
+install.packages("prettyR")
+```
+
+```{r}
+library(prettyR)
+```
+
+- description de la variable de la variable comparateur
+
+```{r}
+describe(contra[,COMPAR])
+```
+
+**Remarque:** Nous remarquons qu'il y'a des "NA" dans la variable COMPAR nous devons afin de manipuler l'information extraire les informations pertinentes soit extraire les lignes de notre tables qui sont non vides.
+
+Type caractère: OK
+
+```{r}
+table(is.na(contra[,AMTPREM]))
+```
+
+**Conclusion:** Aucun NA dans la variable AMTPREM
+
+- Extraire les données ayant la variable COMPAR non vide 
+
+```{r}
+contra_comp=contra[COMPAR!="NA"]
+```
+
+vérification
+
+```{r}
+table(contra_comp$COMPAR,useNA = "always")
+```
+
+ - Identifions les probables problèmes de type pour le formattage des données
+
+```{r}
+str(contra_comp)
+```
+
+**Remarque :** Le type de la variable AMTPREM qui représente les primes versées, n'est pas adéquat, nous devons changer le type en numérique.
+
+- Variable primes 
+
+```{r}
+contra_comp$AMTPREM=as.double(contra_comp$AMTPREM)
+```
+
+ - Vérification
+
+```{r}
+class(contra_comp$AMTPREM)
+```
+
+ Modification OK
+
+```{r}
+table(is.na(contra[,AMTPREM]))
+```
+
+```{r}
+prest$Amt<-as.numeric(as.character(prest$Amt))
+contra$AMTPREM<-as.numeric(as.character(contra$AMTPREM))
+head(prest)
+```
+
+**Jointure**
+
+Pour étudier la corrélation entre les sinistres et les comparateurs on réalise une jointure entre nos 2 tables.
+
+```{r}
+fusion=right_join(contra_comp,prest, by ="IDPOL")
+```
+
+```{r}
+head(fusion)
+```
+
+**SINISTRE**
+
+```{r}
+aggregate(fusion$Amt,by = list(fusion$COMPAR),mean)
+```
+
+Les sinistres les plus chers en moyenne surviennent pour les clients qui ont utilisés le comparateur 3. En revanche les utilisateurs du comparateur 1 sont ceux qui génèrent les sinistres les moins couteux.
+
+**FAMILLE**
+
+Pour étudier les tailles de famille on rajoute une variable qui compte le nombre de bénéficiaires d'une police (il faut faire la somme des ID présents non-NA en commencant forcément par l'ID client)
+
+```{r}
+FAM=apply(!is.na(contra_comp[,3:10]), 1, sum)
+contra_comp<-cbind.data.frame(contra_comp,FAM)
+head(contra_comp[,c("IDPOL","FAM")])
+```
+
+```{r}
+aggregate(contra_comp$FAM,by = list(contra_comp$COMPAR),mean)
+```
+
+On remarque facilement que les familles les plus nombreuses préfèrent faire confiance au comparateur 2 et 3. Tandis que les plus petites utilisent le 7.
+
+**PRIMES**
+
+Pour la partie des primes versées on réalise la même ligne d'agrégation :
+
+```{r}
+aggregate(contra_comp$AMTPREM,by = list(contra_comp$COMPAR),mean)
+```
+
+Les utilisateurs du comparateurs 3 sont prêts à verser plus de primes que sur les autres comparateurs. Au contraire le comparateur 5 permet de souscrire à des polices moins chères que les autres.
+
+**DUREE DE CONTRATS**
+
+```{r}
+head(contra[,c("IDPOL","DATEEFF","DATECAN")])
+```
+
+```{r}
+contra$DATECAN<-as.Date(contra$DATECAN, format = "%Y-%m-%d")
+contra$DATEEFF<-as.Date(contra$DATEEFF, format = "%Y-%m-%d")
+class(contra$DATECAN)
+class(contra$DATEEFF)
+```
+
+```{r}
+contra$DATECAN-contra$DATEEFF
+```
+
+```{r}
+DUREE=contra$DATECAN-contra$DATEEFF
+contra<-cbind.data.frame(contra,DUREE)
+head(contra)
+```
+
+```{r}
+mean(contra$DUREE)
+```
+
+```{r}
+aggregate(contra$DUREE,by = list(contra$COMPAR),length)
+```
+
+```{r}
+contra[,"DUREE"=="NA"]
+```
+
+
+
+---
+
+---
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+## Visualisation de nos variables
+
+```{r}
+barplot(table(contra_comp$COMPAR))
+```
+
+```{r}
+ggplot()+geom_bar(data=contra_comp,aes(x=COMPAR))
+```
+
+Le comparateur 6 et le comparateur5 sont les plus utilisés. il serait intéressant de vérifier notre rang sur chacun de ses comparateurs.
+
+```{r}
+ggplot()+geom_bar(data=contra_comp,aes(x=RANKAGG,fill=COMPAR))
+```
+
+On voit clairement que notre assureur est mieux classé sur les "comparateur6" et  "comparateur5" suivi du "comparateur4".  On peut donc conclure que mieux notre assureur est bien classé et plus les assurés souscrivent à nos polices d'assurance. 
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,y=AMTPREM))+
+geom_boxplot()
+```
+
+**Interprétaton :**
+
+- On comprend mieux les raisons pour lesquelles les cliens ont plus souscrits via les comparateur6 et comparateur5. Car ces primes sur ces comparateurs sont plus faibles que tous les autres. 
+- Via Le comparateur7, les clients bénéficient de primes à bas prix, on pourrait se demander pourquoi après les comparateur6 et comparateur5, ce n'est pas le comparateur7 qui suit, mais plutôt le 4, où pourtant les primes sont assez élevées. 
+- Un piste de solution serait dû au fait que notre assureur est bien classé sur les comparateurs **6, 5, 4 et 1**. Ce qui n'est pas le cas du comparateur7 où nous sommes mal classés( confert diagramme du rang en fonction des comparateurs).
+
+**Conclusion :**On peut donc affirmer que le classement sur le comparateur est d'une importance capitale.
+
+### Analyse des primes en fonction des comparateurs et des différentes formules souscrites 
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,y=AMTPREM))+
+geom_boxplot()+facet_wrap(~FORMU)+ggtitle("Analyse des primes en fonction des comparateurs \n et des différentes formules des contrats")
+```
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,fill=FORMU))+geom_bar()+ggtitle("Répartition des différentes formules par comparateur")
+```
+
+**Interprétation :**
+- la formule 4 est la formule la plus souscrite et ce notament via le comparateur 6. 
+- De même, on constate que le comparateur6 et comparateur5 proposent des primes plus basses pour les formules d'assurance. Ce qui explique une fois de plus que les assurés ont majoritairement souscrit à des polices via les comparateurs 6 et 7.
+- Le comparateur propose des formules trop chères.
+
+
+
+---
+
+---
+
+
+---
+
+---
+
+
+
+
+
+
+
+## Analyse des caractéristiques des clients ayant souscrit via les différents comparateurs
+
+1.  la situation professionnelle 
+
+
+```{r}
+table(contra_comp[,"PROFCLI"],useNA = "always")
+```
+
+```{r}
+
+ggplot()+geom_bar(data=contra_comp,aes(x=PROFCLI))+ggtitle("Répartition des différentes professions")
+```
+
+ Remarque : Notre base des assurés est constituée majoritairement de personnes sans emploi et d'employés.
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR))+geom_bar()+facet_wrap(~PROFCLI)+ggtitle("Répartition des comparateurs par profession")
+```
+
+**Interprétation :**
+- On remarque qu'indépendament de la profession, le comparateur6 reste le comparateur qui attire le plus de clients.
+- Il est important de remarquer que les clients qui sont d'autres professions("other") ont pour la plupart souscrits via le comparateur5
+
+2. le sexe
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR))+geom_bar()+facet_wrap(~PROFCLI)+ggtitle("Répartition des comparateurs par profession")
+```
+
+```{r}
+nb_rmd = rmarkdown:::convert_ipynb()
+xfun::file_string(nb_rmd)
+```
+
+```{r}
+
+```
+
+```{r}
+#fonction de densité
+dnorm(0)
+```
+
+```{r}
+curve(dnorm(x),from = -5,to=5)
+```
+
+```{r}
+#fonction de répartition
+pnorm(3.16)
+```
+
+```{r}
+#détermine un quantile
+qnorm(.75)
+```
+
+- Packages
+
+```{r}
+library(ggplot2)
+```
+
+- Histogramme
+
+```{r}
+sample1=data.frame(x=rnorm(n=500,mean=1,sd=0.7))
+x1=seq(-5,5,by=0.1)
+dens=data.frame(x1,d=dnorm(x1,mean=1,sd=0.7))
+ggplot()+geom_histogram(data=sample1,aes(x,y=..density..))+geom_line(data=dens,aes(x=x1,d),color="blue")
+```
+
+- fonction de répartition empirique et théorique 
+
+```{r}
+ggplot()+geom_density(data=sample1,aes(x,y=..density..))+geom_line(data=dens,aes(x=x1,y=d),color="red")
+```
+
+- Formule théorique de la densité
+
+```{r}
+f=function(x,m,sig)
+{
+  a=1/(sig*sqrt(2*pi)) 
+  b=-1*((x-m)^2)
+  b=b/(2*sig^2)
+  y=a*exp(b)
+  return(y)
+}
+x1=seq(-5,5,by=0.01)
+dens=data.frame(x1,d=dnorm(x1,mean=0,sd=0.5))
+
+```
+
+```{r}
+res=f(x1,m=0,sig=0.5)
+dens_the=data.frame(x1,dth=res)
+data_fi=data.frame(x1=x1,res=res,d=dnorm(x1,mean=0,sd=0.5))
+ggplot(data=data_fi,aes(x=x1))+geom_line(aes(y=d),color="red")+geom_line(aes(y=res),color="blue")
+```
+
+## Loi lognormale
+
+```{r}
+#simulation loi lognormale
+X=rnorm(n=1000,mean=1,sd=0.9)
+Y_log=exp(X)
+hist(Y_log)
+```
+
+- Simulation avec rlnorm
+
+```{r}
+?rlnorm
+```
+
+```{r}
+x=rlnorm(n=100,meanlog=0,sdlog=1)
+print(x)
+hist(x)
+```
+
+```{r}
+#moyenne et écart type
+mu=0
+sig=1
+
+var_log=(exp(sig^2)-1)*exp(2*mu+sig^2)
+x=rlnorm(n=100,meanlog=0,sdlog=1)
+n=length(x)
+moy=sum(x)/n
+var1=(1/n)*sum((x-moy)^2)
+ecart_typ=sqrt(var1)
+cat("la moy théo est : ", exp(mu+sig^2/2))
+cat("\n la moy empi est : ",moy)
+cat(" \nl' ecart type théo est : ",sqrt(var_log))
+cat("\n l'écart type empi  est : ",ecart_typ)
+```
+
+## Utilisation en actuariat
+
+### Distribution de la sévérité
+
+```{r}
+x=seq(0,5,by=0.01)
+n=length(x)
+dens=data.frame(x=rep(x,3),
+y=c(dgamma(x,2,2),dlnorm(x,-1/2,1),dweibull(x,2,2/sqrt(pi))),
+coll=c(rep("dgamma(x,-1,1)",n),rep("dlnorm(x,-1/2,1",n),rep("dweibull(x,2,2/sqrt(pi)",n)))
+ggplot()+geom_line(data=dens,aes(x=x,y=y,colour=coll))
+```
+
+- Distribution de fréquences
+
+```{r}
+x=seq(0,25,by=1)
+n=length(x)
+dens=data.frame(x1=rep(x,3),
+y=c(dpois(x,3),dpois(x,5),dpois(x,9)),
+coll=c(rep("dpois(x,3)",n),rep("dpois(x,5)",n),rep("dpois(x,9)",n)))
+
+```
+
+```{r}
+x
+```
+
+```{r}
+dens
+```
+
+```{r}
+ggplot()+geom_point(data=dens,aes(x=x1,y=y,colour=coll))+geom_line(data=dens,aes(x=x1,y=y,colour=coll))
+```
+
+### comparaison des lois
+
+```{r}
+x=seq(0,25,by=1)
+n=length(x)
+dens=data.frame(x1=rep(x,3),
+y=c(dbinom(x,10,1/2),dnbinom(x,5,1/2),dpois(x,5)),
+loi=c(rep("dbinom(x,10,1/2)",n),rep("dnbinom(x,5,1/2)",n),rep("dpois(x,9)",n)))
+ggplot()+geom_point(data=dens,aes(x=x1,y=y,colour=loi))+geom_line(data=dens,aes(x=x1,y=y,colour=loi))
+```
+
+### Aggrégation des sinistres
+
+
+
+
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+x
+```
+
+```{r}
+
+```
+
+# Raccourci
+
+Exécution de code (dans une cellule de code)
+
+- ⌘/Ctrl + Entrée: exécuter le code et rester dans la cellule
+- Shift + Entrée: exécuter le code et passer à la cellule suivante
+- Alt + Entrée: exécuter le code et ajouter une nouvelle cellule en-dessous
+
+
+```{r}
+1+1
+```
+
+Quand on est dans une cellule
+
+- ⌘/Ctrl + M + B: ajouter une cellule de code en-dessous (B comme "Below")
+- ⌘/Ctrl + M + A: ajouter une cellule de code au-dessus (A comme "Above")
+- ⌘/Ctrl + M + D: supprimer cette cellule
+- ⌘/Ctrl + M + Y: convertir la cellule de markdow en celulle de code
+- ⌘/Ctrl + M + M: convertir la cellule de code en celulle de markdown
+
+```{r}
+
+```
+
+Déplacement des cellules
+
+- ⌘/Ctrl + M + J: déplacer la cellule vers le bas
+- ⌘/Ctrl + M + K: déplacer la cellule vers le haut
+
+Ajouter des cellules de code
+
+- Sélectionner une cellule + B: ajouter une cellule de code en-dessous de celle-ci (B comme "Below")
+- Sélectionner une cellule + A: ajouter une cellule de code au-dessus de celle-ci (A comme "Above")
+- Sélectionner une cellule +Z: annuler les dernières opérations sur les cellules
+
+
+
+Sélection de cellule
+
+- ⌘/Ctrl + Clic: Sélectionner les cellules (pour ensuite copier, puis coller)
+- Shift + Clic: sélectionner toutes les cellules entre les deux
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+# Import des données
+
+## Via icône de chargement de données
+
+```{r}
+
+```
+
+## Via lien url
+
+```{r}
+load(url("https://dataks.bitbucket.io/ml/EU.RData"),verbose=TRUE)
+```
+
+# R en tant que calculatrice
+
+```{r}
+x = c(1,7,3,4)
+y = seq(100,1,-1)
+x[3]+x[4]
+```
+
+```{r}
+cos(x[3]) + sin(x[2]*exp(-y[2]))
+```
+
+## Addition
+
+```{r}
+x[3]=0
+y[2]=-1
+x[3]+x[4]
+```
+
+```{r}
+
+
+cos(x[3]) + sin(x[2]*exp(-y[2]))
+z = y[x+1]
+
+```
+
+```{r}
+
+```
+

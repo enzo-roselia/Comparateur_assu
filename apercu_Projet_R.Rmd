@@ -1,0 +1,787 @@
+---
+title: Projet R
+output: flexdashboard::flex_dashboard 
+orientation: rows
+vertical_layout: scroll
+runtime: shiny
+---
+
+<style>
+    .navbar 
+    {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: block;
+      position: fixed;
+      width: 200px;
+    }
+    body 
+    {
+      margin-left: 200px;
+      padding:10px
+    }
+    pre
+    {
+      padding : 60px;
+    }
+    </style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Projet Langage R**
+
+### Description des variables 
+
+
+
+Descriptif des variables
+
+
+
+Fichier contrats
+
+- IDPOL: Identifiant du contrat d'assurance
+
+- DATEEFF: Date d'effet du contrat
+
+- IDCLI: Identifiant du client
+
+- IDPART: Identifiant du conjoint du client
+
+- IDCHI1: Identifiant de l'enfant numéro 1
+
+- IDCHI2: Identifiant de l'enfant numéro 2
+
+- IDCHI3: Identifiant de l'enfant numéro 3
+
+- IDCHI4: Identifiant de l'enfant numéro 4
+
+- IDCHI5: Identifiant de l'enfant numéro 5
+
+- IDCHI6: Identifiant de l'enfant numéro 6
+
+- FORMU: Formule du contrat
+
+- DATECAN: Date de résiliation
+
+- REACANC: Raison de résiliation
+
+- AMTPREM: Montant de prime
+
+- RANKAGG: Rang sur le comparateur
+
+- COMPAR: Comparateur
+
+- MARCLI: Statut marital du client
+
+- SEXCLI: Sexe du client
+
+- DTNCLI: Date de naissance du client
+
+- PROFCLI: Profession du client
+
+- CP: Code postal du client
+
+- SEXCJ: Sexe du conjoint
+
+- DTNCJ: Date de naissance du conjoint
+
+- PROFCJ: Profession du conjoint
+
+
+
+
+
+
+
+Fichier prestations
+
+- IDPOL: Identifiant du contrat d’assurance
+
+- IDBENE: Identificant du bénéficiaire (ça peut être l’assuré, le conjoint ou l’un des enfants)
+
+Categories: catégorie de prestation
+
+- Subcat: sous-catégorie de prestation
+
+- Name: libellé de prestation
+
+- Amt: montant de dépense
+
+
+
+Durant ce projet, nous allons étudier la Situation des comparateurs, et l'importance des comparateurs dans notre portefeuille d'assurance.Pour cela, nous allons analyser plusieurs caratéristiques.
+
+Manipulation
+=======================================================================
+```{r}
+contra=read.csv2("http://dataks.bitbucket.io/assurance/contrats.csv")
+
+prest=read.csv2("http://dataks.bitbucket.io/assurance/prestations_bene.csv")
+```
+
+```{r}
+head(contra)
+```
+
+```{r}
+head(prest)
+```
+
+- Packages
+
+ 
+
+```{r}
+#install.packages("data.table")
+
+```
+
+```{r,fig.height=3, fig.width=5}
+
+
+library("data.table")
+
+library("ggplot2")
+
+```
+
+```{r,fig.height=3, fig.width=100}
+#install.packages("tibble")
+library(tibble)
+library(tidyverse)
+
+#install.packages("ggthemes") 
+
+#install.packages("ggsci")
+
+library(ggthemes)
+
+library("ggsci")
+```
+
+- utilisation de data.table
+
+```{r,fig.height=100, fig.width=30}
+contra=data.table(contra)
+
+prest=data.table(prest)
+```
+
+
+- Manipulation des données
+
+```{r}
+str(contra)
+```
+
+- La variable comparateur
+
+```{r}
+#install.packages("prettyR")
+```
+
+```{r}
+library(prettyR)
+```
+
+- description de la variable de la variable comparateur
+
+```{r}
+head(describe(contra[,COMPAR]))
+```
+
+**Remarque:** Nous remarquons qu'il y'a des "NA" dans la variable COMPAR nous devons afin de manipuler l'information extraire les informations pertinentes soit extraire les lignes de notre tables qui sont non vides.
+
+Type caractère: OK
+
+```{r}
+table(is.na(contra[,AMTPREM]))
+```
+
+**Conclusion:** Aucun NA dans la variable AMTPREM
+
+- Extraire les données ayant la variable COMPAR non vide 
+
+```{r}
+contra_comp=contra[COMPAR!="NA"]
+```
+
+vérification
+
+```{r}
+table(contra_comp$COMPAR,useNA = "always")
+```
+
+ - Identifions les probables problèmes de type pour le formattage des données
+
+```{r}
+str(contra_comp)
+```
+
+**Remarque :** Le type de la variable AMTPREM qui représente les primes versées, n'est pas adéquat, nous devons changer le type en numérique.
+
+- Variable primes 
+
+```{r}
+contra_comp$AMTPREM=as.double(contra_comp$AMTPREM)
+```
+
+ - Vérification
+
+```{r}
+class(contra_comp$AMTPREM)
+```
+
+ Modification OK
+```{r}
+table(is.na(contra_comp[,AMTPREM]),useNA = "always")
+```
+
+```{r}
+table(is.na(contra_comp[,SEXCLI]),useNA = "always")
+```
+
+```{r}
+table(is.na(contra_comp[,FORMU]),useNA = "always")
+```
+
+```{r}
+table(is.na(contra_comp[,COMPAR]),useNA = "always")
+```
+
+```{r}
+table(is.na(contra_comp[,MARCLI]),useNA = "always")
+```
+
+```{r}
+summary(contra_comp)
+```
+
+```{r}
+str(contra_comp)
+```
+
+
+
+Visualisation
+=======================================================================
+
+-Visualisation de nos variables
+
+On observe la répartition des comparateurs au sein de notre base de plices :
+
+###Comparateurs
+---
+```{r}
+barplot(table(contra_comp$COMPAR))
+
+```
+
+```{r}
+ggplot()+geom_bar(data=contra_comp,aes(x=COMPAR))
+```
+
+Le comparateur 6 et le comparateur5 sont les plus utilisés. il serait intéressant de vérifier notre rang sur chacun de ses comparateurs.
+
+
+On cherche à savoir quel est le comparateur qui classe le mieux notre compagnie :
+
+```{r}
+ggplot()+geom_bar(data=contra_comp,aes(x=RANKAGG,fill=COMPAR))
+```
+
+On voit clairement que notre assureur est mieux classé sur les "comparateur6" et  "comparateur5" suivi du "comparateur4".  On peut donc conclure que mieux notre assureur est bien classé et plus les assurés souscrivent à nos polices d'assurance. 
+
+
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,y=AMTPREM))+
+
+geom_boxplot()
+```
+
+**Interprétaton :**
+
+
+
+- On comprend mieux les raisons pour lesquelles les cliens ont plus souscrits via les comparateur6 et comparateur5. Car ces primes sur ces comparateurs sont plus faibles que tous les autres. 
+
+- Via Le comparateur7, les clients bénéficient de primes à bas prix, on pourrait se demander pourquoi après les comparateur6 et comparateur5, ce n'est pas le comparateur7 qui suit, mais plutôt le 4, où pourtant les primes sont assez élevées. 
+
+- Un piste de solution serait dû au fait que notre assureur est bien classé sur les comparateurs **6, 5, 4 et 1**. Ce qui n'est pas le cas du comparateur7 où nous sommes mal classés( confert diagramme du rang en fonction des comparateurs).
+
+
+
+**Conclusion :**On peut donc affirmer que le classement sur le comparateur est d'une importance capitale.
+
+-Analyse des primes en fonction des comparateurs et des différentes formules souscrites 
+
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,y=AMTPREM))+
+
+geom_boxplot()+facet_wrap(~FORMU)+ggtitle("Analyse des primes en fonction des comparateurs \n et des différentes formules des contrats")
+```
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,fill=FORMU))+geom_bar()+ggtitle("Répartition des différentes formules par comparateur")
+
+```
+
+
+```{r}
+#install.packages("flexdashboard")
+
+#install.packages("htmltools")
+
+#install.packages("shiny")
+
+library(flexdashboard)
+
+library(htmltools)
+
+library(shiny)
+
+
+
+ui <- fluidPage(
+
+  fillCol( flex = c(NA, 1), 
+
+  inputPanel(
+
+      selectInput("COMPAR", "Comparateur:", choices =levels(contra$COMPAR) )
+
+    ),
+
+    plotOutput("formuPlot",height = 800)
+
+  )
+
+)
+
+
+
+server <- function(input, output) {
+
+  output$formuPlot <- renderPlot({
+
+    ggplot(subset(contra_comp, COMPAR==input$COMPAR),aes(x=FORMU))+geom_bar()+ggtitle("Histogramme de la répartition des formules souscrites en fonction du comparateur") +
+  xlab("Formules") + ylab("Nombre de formules souscrites")
+
+  })
+
+}
+
+shinyApp(ui=ui,server = server)
+```
+
+**Interprétation :**
+
+- la formule 4 est la formule la plus souscrite et ce notament via le comparateur 6. 
+
+- De même, on constate que le comparateur6 et comparateur5 proposent des primes plus basses pour les formules d'assurance. Ce qui explique une fois de plus que les assurés ont majoritairement souscrit à des polices via les comparateurs 6 et 7.
+
+- Le comparateur propose des formules trop chères.
+
+
+
+```{r}
+#install.packages("d3r")
+library(sunburstR)
+library(d3r)
+```
+
+```{r}
+
+agg=contra_comp[,c("COMPAR","FORMU")]
+tree<- d3_nest(agg)
+sb1 <- sunburst(tree, width="100%", height=400)
+```
+
+```{r}
+sb1
+```
+
+
+
+Analyse
+=======================================================================
+
+-Analyse des caractéristiques des clients ayant souscrit via les différents comparateurs
+----
+
+-Analyse des caractéristiques des clients ayant souscrit via les différents comparateurs
+
+1.  la situation professionnelle 
+
+
+```{r,echo=TRUE}
+table(contra_comp[,PROFCLI],useNA = "always")
+```
+
+```{r}
+ggplot()+geom_bar(data=contra_comp,aes(x=PROFCLI))+ggtitle("Répartition des différentes professions")
+```
+
+ Remarque : Notre base des assurés est constitué majoritairement de personnes sans emploi et d'employés.
+ 
+```{r}
+ggplot(contra_comp, aes(x=COMPAR))+geom_bar()+facet_wrap(~PROFCLI)+ggtitle("Répartition des comparateurs par profession")
+```
+
+**Interprétation :**
+
+- On remarque qu'indépendament de la profession, le comparateur6 reste le comparateur qui attire le plus de clients.
+
+- Il est important de remarquer de remarquer que les clients qui sont d'autres professions("other") ont pour la plupart souscrits via le comparateur5
+
+
+
+
+2. le sexe
+
+```{r,echo=TRUE}
+tabsex=table(contra_comp$SEXCLI,useNA = "always")
+print(tabsex)
+```
+
+```{r,echo=TRUE}
+tabsex_freq=tabsex*100/nrow(contra_comp)
+tabsex_freq
+```
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR))+geom_bar()+facet_wrap(~SEXCLI)+ggtitle("Répartition des comparateurs pour chaque sexe")+ theme_stata() + scale_color_stata()
+
+```
+
+Interprétation:
+
+- On peut dire que le sexe des différents clients ne permet pas d'expliquer le choix des différents comparateurs.
+
+- Les clients hommes et  femmes ne sont pas si différents dans leurs choix. Ils ont souscrit tous majoritairement via le comparateur 6 et 7.
+
+```{r}
+library("ggsci")
+
+ggplot(contra_comp, aes(x=COMPAR))+geom_bar()+facet_wrap(FORMU~SEXCLI)+ggtitle("Répartition du choix des différents comparateurs \n pour chaque formule et par sexe")
+```
+
+**Interprétation:**
+
+Ce graphique confirme le fait que les clients hommes et femmes ont sensiblement les mêmes caractéristiques. **Ils ont tous majoritement souscrit à la Formule 4 et cela via les comparateurs 6 et 7.**
+
+3. Le statut marital
+
+
+```{r}
+table(contra$MARCLI)
+```
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR,y=AMTPREM))+
+
+geom_boxplot()+facet_wrap(~MARCLI)+ggtitle("Analyse des primes en fonction des comparateurs \n et du statut marital du client")
+```
+
+```{r}
+tab_prim=contra_comp[,.(moyenne_prim=mean(AMTPREM)),by=MARCLI]
+print(tab_prim)
+```
+
+```{r}
+tab_compa=contra_comp[,.(moyenne_prim=mean(AMTPREM)),by=COMPAR]
+print(tab_compa)
+```
+
+**Interprétations:** 
+
+Des schémas ci-dessus, on peut dire que :
+
+- Les clients marriés paient des primes plus élevées que tous les autres suivi des veufs. 
+
+- les célibataires paient les primes les moins élevées
+
+- Les clients ayant souscrit un contrat via le comparateur 4, ont payé des primes plus élevées.
+
+- Les mariés qui ont souscrit via le comparateur 5 paient les primes les plus basses parmi les clients marriés.( il serait intéressant d'analyser plus tard les formules les plus appréciées et si le nombre d'enfants a eu une influence dans le choix des diférentes formules)
+
+```{r}
+ggplot(contra_comp, aes(x=COMPAR))+
+
+geom_bar()+facet_wrap(~MARCLI)+ggtitle("Répartition des comparateurs \n en fonction du statut marital des clients")
+```
+
+```{r}
+ggplot(contra_comp, aes(x=FORMU,fill=COMPAR))+
+geom_bar()+facet_wrap(~MARCLI)+ggtitle("Répartition des formules et du comparateur \n pour chaque statut marital des clients")
+```
+
+**Remarque:** 
+
+- La formule 4 est très apréciée qu'importe le statut marital du client.
+
+- La formule 4 est très appréciée notamement des célibataires et des marriés
+
+- Qu'importe le statut marital, les clients ont souscrit à la formule majoritairement via les **comparateurs 6 et 5**. Cela s'explique notamment par le fait que les primes souscrites via les comparateurs 6 et 5, sont les plus basses de notre protefeuille; et ces comparateurs sont aussi ceux où notre assureur est le mieux classé.
+
+
+
+  **On voit à clairement un rapport entre le classement de notre assureur sur un comparateur et le nombre d'assurés ayant souscrit via ce comparateur.**
+
+
+- Analyse des choix des formules d'assurance par satut marital et pour chaque comparateur
+
+```{r}
+ggplot(contra_comp, aes(x=FORMU))+
+
+geom_bar()+facet_wrap(COMPAR~MARCLI)+ggtitle("Répartition des formules \n et par comparateur et statut marital des clients")
+```
+
+Remarque :
+
+Qu'importe le comparateur et le statut marital, les assurés ont plus souscrit à la formule 4, elle reste la plus avantageuse pour nos assurés.
+
+- Moyenne des primes par formule
+
+```{r}
+tab_form=contra_comp[,.(moy_prim=mean(AMTPREM),nombre=.N),by=.(FORMU)]
+print(tab_form)
+```
+
+**Interprétations:**
+
+- le tableau ci dessus,explique mieux pourquoi la formule 4 est la plus apréciée des clients, elle offre les primes les plus basses.
+
+
+
+
+
+
+
+4. Le nombre d'enfants 
+
+```{r}
+nbre_enfant=as.integer(!is.na(contra_comp$IDCHI1))+as.integer(!is.na(contra_comp$IDCHI2))+as.integer(!is.na(contra_comp$IDCHI3))+as.integer(!is.na(contra_comp$IDCHI4))+as.integer(!is.na(contra_comp$IDCHI5))+as.integer(!is.na(contra_comp$IDCHI6))
+```
+
+```{r}
+contra_comp[,nombre_enfants:=nbre_enfant]
+```
+
+- Statistiques sur le nombre d'enfants
+
+```{r}
+summary(contra_comp$nombre_enfants)
+```
+
+```{r}
+tab_enf=table(contra_comp$nombre_enfants)
+
+print(tab_enf)
+```
+
+```{r}
+barplot(table(contra_comp$nombre_enfants))
+```
+
+```{r}
+tab_freq=tab_enf*100/nrow(contra_comp)
+
+print(tab_freq)
+```
+
+Remarque:
+
+Notre base est constituée à plus de 70% par des clients n'ayant aucun enfant et à plus de 95% de clients ayant moins de 2 enfants.
+
+- Nous allons donc analyser le choix des différentes formules et des comparateurs en fonction du nombre d'enfants de chaque client, pour ainsi voir si le nombre d'enfants influence le choix de la formule.
+
+```{r}
+ggplot(data=contra_comp,aes(x=FORMU,fill=as.factor(contra_comp$nombre_enfants)))+geom_bar()+labs(fill="Nombre d'enfants")+ggtitle("Répartition du nombre d'enfants par formule")
+```
+
+```{r}
+ggplot(data=contra_comp,aes(x=FORMU))+geom_bar()+ggtitle("Analyse du choix des formules en fonction du nombre d'enfants")+facet_wrap(~nombre_enfants)
+```
+
+**Interprétation :**
+
+Qu'importe le nombre d'enfants, la formule 4 demeure la plus appréciée.*texte en italique*
+
+```{r}
+ggplot(data=contra_comp,aes(x=COMPAR))+geom_bar()+ggtitle("Analyse des comparateurs en fonction du nombre d'enfants")+facet_wrap(~nombre_enfants)
+```
+
+**Interprétation:**
+
+
+
+Le nombre d'enfants des clients n'a pas influencé le fait que la plus grande partie de nos assurés aient souscrit via  les comparateurs 6 et 5.
+
+
+
+4. Durée des contrats
+
+```{r}
+table(is.na(contra_comp$DATEEFF))
+```
+
+Tous les contrats possèdent une date d'effet de garantie
+
+```{r}
+table(is.na(contra_comp$DATECAN))
+```
+
+Il y'a 4687 contrats sans date de résiliation et 1149 contrats résiliés
+
+```{r}
+contra_comp[DATECAN=="NA",resilie:="Non"]
+```
+
+```{r}
+contra_comp[is.na(DATECAN),resilie:="Non"]
+```
+
+```{r}
+contra_comp[!is.na(DATECAN),resilie:="Oui"]
+```
+
+```{r}
+table(contra_comp$resilie)
+```
+
+- Création de la variable représentant la durée des contrats pour les contrats qui ont été résiliés
+
+
+```{r}
+#clients ayant résilié leurs contrats
+
+contra_resil=contra_comp[resilie=="Oui"]
+
+print(contra_resil)
+```
+
+```{r}
+#conversion de caractères en dates
+
+date_deb=as.Date(contra_resil$DATEEFF,format = "%Y-%m-%d")
+
+date_fin=as.Date(contra_resil$DATECAN,format = "%Y-%m-%d")
+
+duree=date_fin-date_deb
+```
+
+```{r}
+head(duree)
+
+contra_resil[,dureeContra:=duree]
+
+head(contra_resil)
+```
+
+```{r}
+#distribution de la durée des contrats
+
+ggplot()+geom_histogram(data=contra_resil,aes(x = dureeContra))
+```
+
+Remarque:
+
+Il y'a des dates négatives, qui ne sont pas conformes. Il faut les retirer de la base de données.
+
+```{r}
+#les contrats non conformes
+
+a=contra_resil[which(dureeContra<0)]
+
+head(a[,dureeContra])
+```
+
+```{r}
+contra_resil_clean=contra_resil[which(dureeContra>=0)]
+
+head(contra_resil_clean)
+```
+
+Vérification
+
+```{r}
+ggplot()+geom_histogram(data=contra_resil_clean,aes(x=dureeContra))
+```
+
+```{r}
+
+
+ ggplot()+geom_histogram(data=contra_resil_clean,aes(x=dureeContra,y=..density..))+geom_density()
+```
+
+- Analyse de la durée de la contrats par formule
+
+
+```{r}
+contra_resil_clean[,.(moyenne_duree=mean(dureeContra),moyenne_primes=mean(AMTPREM)),by=FORMU]
+```
+
+**Interprétation:**
+
+- Les clients qui ont souscrit aux formules 1 et 2 sont en général plus fidèles et ont des durées de contrats plus longues. 
+
+- Cela s'explique vu la moyenne des primes. Les formules 1 et 2 sont les formules les moins chères et donc les clients sont en général plus fidèles.         
+
+
+```{r}
+contra_resil_clean[,.(moyenne_duree=mean(dureeContra),moyenne_primes=mean(AMTPREM)),by=.(COMPAR)]
+```
+
+**Interprétations:**
+
+- Le comparateur 1, bien que pas très convoité par les clients,est le comparateur où les contrats sont plus les plus longs, cela s'explique surement vu les prix des primes de chaque comparateur.
+
+- les clients souscrivent le plus via les comparateurs 6 et 5,bien qu'offrant des primes relativement élevées. 
+
+
+
+
+
+5. fusion des tables contrats et prestations
+
+```{r}
+contra_prest=merge(contra_comp, prest, by = "IDPOL")
+```
+
+```{r}
+head(contra_prest)
+```
+
+```{r}
+dep_compa=contra_prest[,.(moyenne_dep=mean(Amt)),by=COMPAR]
+
+print(dep_compa)
+```
+
+```{r}
+ggplot(contra_prest, aes(x=COMPAR,y=Amt))+geom_bar(stat="identity")+ggtitle("Répartition des sinistres en fonction des comparateurs")
+```
+
+```{r}
+ggplot(contra_prest, aes(x=COMPAR,y=Amt))+geom_count()
+```
+
+
+
+```{r}
+ggplot(contra_prest, aes(x=COMPAR,y=Amt))+geom_bar(stat="identity")+facet_wrap(~PROFCLI)+ggtitle("Répartition des depenses par comparateurs et  par profession")
+```
+
+```{r}
+ggplot(contra_prest, aes(x=COMPAR,y=AMTPREM))+
+
+geom_boxplot()+facet_wrap(~MARCLI)+ggtitle("Répartition des depenses par comparateurs et  par profession")
+```
+

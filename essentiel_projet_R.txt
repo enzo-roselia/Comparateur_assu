@@ -1,0 +1,111 @@
+---
+title: "Shiny_test"
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+    source_code: embed 
+runtime: shiny
+---
+
+### Shiny Module
+
+```{r, include=FALSE}
+
+# UI function
+ui <- fluidPage(
+  fillCol(height = 600, flex = c(NA, 1), 
+  inputPanel(
+      selectInput("COMPAR", "Comparateur:", choices =levels(contra$COMPAR) )
+    ),
+    plotOutput("formuPlot", height = "100%")
+  )
+)
+
+# Server function
+server <- function(input, output) {
+  output$formuPlot <- renderPlot({
+    ggplot(subset(contra_comp, COMPAR==input$COMPAR),aes(x=FORMU))+geom_bar()
+  })
+}
+shinyApp(ui=ui,server = server)
+```
+
+
+
+nb_rmd = rmarkdown:::convert_ipynb("C:\\Users\\nzoro\\OneDrive\\Documents\\Esilv\\Actuariat\\R_Cours\\aperçu_Projet_R.ipynb")
+
+xfun::file_string(nb_rmd)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+title: "ggplot2 Brushing"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(datasets)
+contra_comp_s <- contra_comp[, c("IDPOL", "COMPAR", "AMTPREM")]
+```
+
+
+```{r}
+selectedData <- reactive({
+  data <- brushedPoints(contra_comp_s, input$plot1_brush)
+  if (nrow(data) == 0)
+    data <- contra_comp_s
+  data
+})
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Miles Per Gallon vs. Weight {data-width=600}
+
+```{r}
+plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
+output$plot1 <- renderPlot({
+  ggplot(contra_comp_s , aes(wt, mpg)) + geom_point()
+})
+```
+
+### Miles Per Gallon and Cylinders
+
+```{r}
+renderPlot({
+  ggplot(selectedData(), aes(factor(cyl), mpg))  + geom_boxplot()
+})
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Car Details {data-width=400}
+
+```{r}
+renderTable({
+  selectedData()
+})
+```
